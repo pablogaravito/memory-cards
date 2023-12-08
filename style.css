@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+}
+
+h2 {
+    margin: 20px 0;
+}
+
+#board {
+    height: 533px;
+    width: 475px;
+    margin: 0 auto;
+    background: greenyellow;
+    display: flex;
+    flex-wrap: wrap;
+    border: 10px solid crimson;
+}
+
+.card {
+    height: 128px;
+    width: 90px;
+    margin: 2.5px;
+}
