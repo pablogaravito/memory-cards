@@ -4,12 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Card Game by Pablis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h2>Turns: <span id="turns">0</span></h2>
-
-    <div id="board"></div>
+    <h1 class="page-title">Entrena tu memoria!</h1>
+    <div class="overlay-text visible">Click para Empezar</div>
+    <div id="game-over-text" class="overlay-text">
+      PERDISTE!
+      <span class="overlay-text-small">Click aquí para reiniciar</span>
+    </div>
+    <div id="victory-text" class="overlay-text">
+      VICTORIA!
+      <span class="overlay-text-small">Click aquí para reiniciar</span>
+    </div>
+    <div class="game-container">
+      <div class="game-info-container">
+        <div class="game-info">Time <span id="time-remaining">100</span></div>
+        <div class="game-info">Flips <span id="flips">0</span></div>
+      </div>
+      <div id="board"></div>
+    </div>
 
     <script src="app.js"></script>
   </body>
