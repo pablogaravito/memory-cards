@@ -8,6 +8,32 @@
 body {
     text-align: center;
 }
+
+.overlay-text {
+    position: fixed;
+    display: none; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    color: #FF6D00;
+    /* font-family: Creepy, serif; */
+    user-select: none;
+}
+
+.overlay-text-small {
+    font-size: .3em;
+}
+
+.overlay-text.visible {
+    display: flex;
+    flex-direction: column;
+    animation: overlay-grow 500ms forwards;
+
+}
 .card-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -34,6 +60,18 @@ body {
     transition: transform 500ms ease-in-out;
 }
 
+.card-decoration {
+    transition: transform 100ms ease-in-out;
+}
+
+.card-face:hover .card-decoration {
+    transform: scale(1.1);
+}
+
+.card.matched .card-decoration {
+    animation: infinite-spinning 4s linear 500ms infinite;
+}
+
 .card-front {
     transform: rotateY(180deg);
 }
@@ -54,6 +92,10 @@ body {
     transform: scale(1);
 }
 
+.card-back:hover .img-back {
+    transform: scale(1);
+}
+
 .img-back, .card-value {
     grid-row-start: 2;
     grid-row-end: 3;
@@ -61,7 +103,7 @@ body {
     grid-column-end: 3;
     align-self: center;
     justify-self: center;
-    transform: scale(.9);
+    transform: scale(.95);
     transition: transform 100ms ease-in-out;
 }
 
@@ -97,3 +139,35 @@ body {
     grid-column-start: 3;
     grid-column-end: 4;
 }
+
+@keyframes overlay-grow {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 0;
+    }
+    to {
+        background-color: rgba(0, 0, 0, .8);
+        font-size: 10em;
+    }
+}
+
+@keyframes dance {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(-30deg);
+    }
+    75% {
+        transform: rotate(30deg);
+    }
+}
+
+@keyframes infinite-spinning {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
