@@ -7,6 +7,7 @@
 
 body {
     text-align: center;
+    max-height: 100vh;
 }
 
 .overlay-text {
@@ -39,8 +40,8 @@ body {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 5px;
-    height: 80vh;
-    width: 60%;
+    /* max-height: 50vh; */
+    width: 50%;
     margin: 20px auto;
 }
 
@@ -61,11 +62,12 @@ body {
 }
 
 .card-decoration {
+    transform: scale(.95);  
     transition: transform 100ms ease-in-out;
 }
 
 .card-face:hover .card-decoration {
-    transform: scale(1.1);
+    transform: scale(1);
 }
 
 .card.matched .card-decoration {

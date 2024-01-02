@@ -1,10 +1,116 @@
+var XMAS_CARDS = [
+    'bell', 
+    'bells', 
+    'calendar',
+    'candles',
+    'candy',
+    'champagne',
+    'dessert',
+    'elf',
+    'gift',
+    'gingerbread',
+    'gloves',
+    'hat',
+    'heart',
+    'letter',
+    'ornament',
+    'ornament2',
+    'ornament3',
+    'ornament4',
+    'polar-bear',
+    'reindeer',
+    'santa-smile',
+    'santa-sunglasses',
+    'sled',
+    'snowglobe',
+    'snowglobe2',
+    'snowglobe3',
+    'snowman',
+    'sock',
+    'star',
+    'tree',
+    'wreath'
+];
+var HALLOWEEN_CARDS = [
+    'axe',
+    'bat',
+    'bats',
+    'broom',
+    'cat',
+    'cauldron',
+    'cauldron2',
+    'coffin',
+    'dracula',
+    'evil-clown',
+    'eyes',
+    'frankenstein',
+    'ghost',
+    'ghost2',
+    'haunted-house',
+    'jason',
+    'kruger',
+    'magicball',
+    'moon',
+    'owl',
+    'potion',
+    'pumpkin',
+    'reaper',
+    'scream',
+    'skull',
+    'spirit',
+    'tombstone',
+    'voodoo',
+    'witch',
+    'witch-hat',
+    'zombie-hand'
+];
+var FOOD_CARDS = [
+    'apple',
+    'baguette',
+    'banana',
+    'blueberries',
+    'bread',
+    'cake',
+    'cake2',
+    'cheese',
+    'cheesecake',
+    'chips',
+    'dessert',
+    'donut',
+    'egg',
+    'fried-chicken',
+    'fries',
+    'grapes',
+    'hamburger',
+    'hot-dog',
+    'icecream',
+    'icecream2',
+    'japan-food',
+    'ketchup',
+    'kiwi',
+    'lemon',
+    'mango',
+    'meat',
+    'muffin',
+    'pear',
+    'pie',
+    'pizza',
+    'ramen',
+    'sandwich',
+    'spaghetti',
+    'strawberry',
+    'taco',
+    'toast',
+    'triple'
+];
+
 class AudioController {
     constructor() {
-        // this.bgMusic = new Audio('res/Audio/creepy.mp3');
-        this.flipSound = new Audio('res/Audio/flip.wav');
-        this.matchSound = new Audio('res/Audio/match.wav');
-        this.victorySound = new Audio('res/Audio/victory.wav');
-        this.gameOverSound = new Audio('res/Audio/gameover.wav');
+        // this.bgMusic = new Audio('res/audio/creepy.mp3');
+        this.flipSound = new Audio('res/audio/flip.wav');
+        this.matchSound = new Audio('res/audio/match.wav');
+        this.victorySound = new Audio('res/audio/victory.wav');
+        this.gameOverSound = new Audio('res/audio/gameover.wav');
         // this.bgMusic.volume = 0.3;
         // this.bgMusic.loop = true;
     }
@@ -35,17 +141,25 @@ class Game {
     constructor(totalTime) {     
         this.totalTime = totalTime;
         this.timeRemaining = totalTime;
-        this.cardsArray = this.selectCards(20);
-        console.log(this.cardsArray);
         this.timer = document.querySelector('#time-remaining');
         this.flips = document.querySelector('#flips');
         this.audioController = new AudioController();
     }
-    startGame() {
+    startGame(cardNumber, cardSet) {
+        const board = document.querySelector('.card-container');
+        board.innerHTML = '';
         this.cardToCheck = null;
-        
+        this.cardsArray = this.selectCards(cardNumber, cardSet);
+        populateBoard(board, this.cardsArray);
+        const cards = Array.from(document.getElementsByClassName('card'));
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                this.flipCard(card);
+            });
+        });
         this.hideCards();
         this.currentFlips = 0;
+        this.flips.innerText = this.currentFlips;
         this.timeRemaining = this.totalTime;
         this.matchedCards = [];
         this.busy = true;
@@ -56,42 +170,11 @@ class Game {
             this.busy = false;
         }, 500);
     }
-    selectCards(totalCards) {
-        const xmasCards = [
-            'bell', 
-            'bells', 
-            'calendar',
-            'candles',
-            'champagne',
-            'dessert',
-            'gingerbread',
-            'gloves',
-            'hat',
-            'heart',
-            'letter',
-            'ornament',
-            'ornament2',
-            'ornament3',
-            'ornament4',
-            'polar-bear',
-            'reindeer',
-            'santa-smile',
-            'santa-sunglasses',
-            'sled',
-            'snowglobe',
-            'snowglobe2',
-            'snowglobe3',
-            'snowman',
-            'sock',
-            'star',
-            'tree',
-            'wreath'
-        ];
+    selectCards(totalCards, cardSet) {   
         const cardsNeeded = totalCards/2;
-        const shuffledCards = this.shuffleCards(xmasCards);
+        const shuffledCards = this.shuffleCards(cardSet);
         const cardList = shuffledCards.slice(shuffledCards.length - cardsNeeded);
-        const cardSet = cardList.concat(cardList);
-        return this.shuffleCards(cardSet);
+        return this.shuffleCards(cardList.concat(cardList));
     }
     shuffleCards(cardsArray) {
         let newCardsArray = cardsArray.slice();
@@ -119,7 +202,6 @@ class Game {
             this.timer.innerText = this.timeRemaining;
             if (this.timeRemaining === 0)
                 this.gameOver();
-                // console.log('game over papu');
         }, 1000);
     }
     gameOver() {
@@ -134,7 +216,6 @@ class Game {
         document.querySelector('#victory-text').classList.add('visible');
     }
     flipCard(card) {
-        card.classList.toggle('visible');
         if(this.canFlipCard(card)) {
             this.audioController.flip();
             this.currentFlips++;
@@ -181,15 +262,17 @@ class Game {
 }
 
 function populateBoard(board, cardSet) {
-    const path = 'res/xmas/';
+    const path = 'res/img/food/';
     for (let i = 1; i <= 20; i++) {
         
         const card = document.createElement('div');
         card.classList.add('card');
-        const decorationFileName = '0_snowflake';
+        const decorationFileName = '0_decoration';
+        const cardBackFileName = '0_card-back';
 
         //corner decorations shared for both card Back and Front
         const decorationSrc = `${path}${decorationFileName}.png`;
+        const cardBackSrc = `${path}${cardBackFileName}.png`;
         const topLeftImg = document.createElement('img');
         topLeftImg.classList.add('card-decoration');
         topLeftImg.classList.add('top-left');
@@ -214,7 +297,7 @@ function populateBoard(board, cardSet) {
 
         const imgBack = document.createElement('img');
         imgBack.classList.add('img-back');
-        imgBack.src = "res/xmas/0_card-back.png";
+        imgBack.src = cardBackSrc;
         cardBack.appendChild(topLeftImg);
         cardBack.appendChild(bottomLeftImg);
         cardBack.appendChild(topRightImg);
@@ -263,25 +346,15 @@ function populateBoard(board, cardSet) {
 }
 
 function ready() {
-    let overlays = Array.from(document.getElementsByClassName('overlay-text'));
-    const board = document.querySelector('.card-container');
-    const game = new Game(60);
-    
-    populateBoard(board, game.cardsArray);
-        const cards = Array.from(document.getElementsByClassName('card'));
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                game.flipCard(card);
-            });
-        });
+    let overlays = Array.from(document.getElementsByClassName('overlay-text'));   
+    const game = new Game(60);   
     
     overlays.forEach(overlay => {
         overlay.addEventListener('click', () => {
             overlay.classList.remove('visible');
-            game.startGame();
+            game.startGame(20, FOOD_CARDS);
         });
     });
-
 }
 
 if (document.readyState === 'loading') {
