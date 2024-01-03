@@ -113,6 +113,10 @@ var FOOD_PACK = {
     ]
 }
 
+var difficulty = -1;
+var theme = '';
+
+
 
 class AudioController {
     constructor() {
@@ -155,12 +159,47 @@ class Game {
         this.flips = document.querySelector('#flips');
         this.audioController = new AudioController();
     }
-    startGame(cardNumber, pack) {
-        
-        this.cardToCheck = null;
-        this.cardsArray = this.selectCards(cardNumber, pack.cards);
+    startGame() {
+        let cardNumber;
+        switch(difficulty) {
+            case 0:
+                cardNumber = 12;
+                break;
+            case 1:
+                cardNumber = 18;
+                break;
+            case 2:
+                cardNumber = 24;
+                break;
+            case 3:
+                cardNumber = 30;
+                break;
+            default:
+                cardNumber = 18;
+                break;
+        }
+        let currentTheme;
+        switch(theme.toLocaleLowerCase()) {
+            case 'animales':
+                currentTheme = XMAS_PACK;
+                break;
+            case 'navidad':
+                currentTheme = XMAS_PACK;
+                break;
+            case 'halloween':
+                currentTheme = HALLOWEEN_PACK;
+                break;
+            case 'comida':
+                currentTheme = FOOD_PACK;
+                break;
+            default:
+                currentTheme = XMAS_PACK;
+        }
 
-        populateBoard(pack, this.cardsArray);
+        this.cardToCheck = null;
+        this.cardsArray = this.selectCards(cardNumber, currentTheme.cards);
+
+        populateBoard(currentTheme, this.cardsArray);
         const cards = Array.from(document.getElementsByClassName('card'));
         cards.forEach(card => {
             card.addEventListener('click', () => {
@@ -187,7 +226,7 @@ class Game {
         return this.shuffleCards(cardList.concat(cardList));
     }
     shuffleCards(cardsArray) {
-        let newCardsArray = cardsArray.slice();
+        const newCardsArray = cardsArray.slice();
 
         //modern Fisher Yates algorithm
         let temp;
@@ -274,7 +313,7 @@ class Game {
 function populateBoard(pack, cardSet) {
     const board = document.querySelector('.card-container');
         board.innerHTML = '';
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= cardSet.length; i++) {
         
         const card = document.createElement('div');
         card.classList.add('card');
@@ -370,12 +409,21 @@ function fillThemesSelect() {
     }
 }
 
+function defineGame() {
+    const selectDifficulty = document.querySelector('#selectDifficulty');
+    const selectTheme = document.querySelector('#selectTheme');
+    difficulty = parseInt(selectDifficulty.value);
+    theme = selectTheme.selectedOptions[0].text;
+    console.log(difficulty);
+    console.log(theme);
+}
 
 function ready() {
     fillDifficultySelect();
     fillThemesSelect();
     const startGameBtn = document.querySelector('#startGame');
     startGameBtn.addEventListener('click', () => {
+        defineGame();
         const settingsDiv = document.querySelector('.settings');
         settingsDiv.classList.add('hidden');
         const startOverlay = document.querySelector('#start-game-text');
@@ -390,7 +438,7 @@ function ready() {
             // overlay.classList.remove('visible');
             overlay.classList.add('hidden');
             gameContainer.classList.remove('hidden');
-            game.startGame(20, FOOD_PACK);
+            game.startGame();
         });
     });
 }
