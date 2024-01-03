@@ -13,20 +13,44 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1 class="page-title">Entrena tu memoria!</h1>
-    <div class="overlay-text visible">Click para Empezar</div>
-    <div id="game-over-text" class="overlay-text">
+    <!-- <h1 class="page-title">Entrena tu memoria!</h1> -->
+    <!-- <div class="selects">
+        <div class="item">
+          <label for="selectDifficulty">Selecciona un nivel:</label>
+          <select name="selectDifficulty" id="selectDifficulty"></select>
+        </div>
+
+        <div class="item">
+          <label for="selectWordList">Selecciona un tema:</label>
+          <select name="selectWordList" id="selectWordList"></select>
+        </div>
+      </div> -->
+    <div class="settings">
+      <div class="setting-select">
+        <label for="selectDifficulty">Selecciona un nivel:</label>
+        <select name="selectDifficulty" id="selectDifficulty"></select>
+      </div>
+      <div class="setting-select">
+        <label for="selectTheme">Selecciona un tema:</label>
+        <select name="selectTheme" id="selectTheme"></select>
+      </div>
+      <button id="startGame">Jugar!</button>
+    </div>
+    <div id="start-game-text" class="overlay-text hidden">
+      Click para Empezar
+    </div>
+    <div id="game-over-text" class="overlay-text hidden">
       PERDISTE!
       <span class="overlay-text-small">Click aquí para reiniciar</span>
     </div>
-    <div id="victory-text" class="overlay-text">
+    <div id="victory-text" class="overlay-text hidden">
       VICTORIA!
       <span class="overlay-text-small">Click aquí para reiniciar</span>
     </div>
-    <div class="game-container">
+    <div class="game-container hidden">
       <div class="game-info-container">
-        <div class="game-info">Time <span id="time-remaining">100</span></div>
-        <div class="game-info">Flips <span id="flips">0</span></div>
+        <div class="game-info">Tiempo <span id="time-remaining">100</span></div>
+        <div class="game-info">Jugadas <span id="flips">0</span></div>
       </div>
       <div class="card-container"></div>
     </div>

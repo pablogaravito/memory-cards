@@ -1,108 +1,118 @@
-var XMAS_CARDS = [
-    'bell', 
-    'bells', 
-    'calendar',
-    'candles',
-    'candy',
-    'champagne',
-    'dessert',
-    'elf',
-    'gift',
-    'gingerbread',
-    'gloves',
-    'hat',
-    'heart',
-    'letter',
-    'ornament',
-    'ornament2',
-    'ornament3',
-    'ornament4',
-    'polar-bear',
-    'reindeer',
-    'santa-smile',
-    'santa-sunglasses',
-    'sled',
-    'snowglobe',
-    'snowglobe2',
-    'snowglobe3',
-    'snowman',
-    'sock',
-    'star',
-    'tree',
-    'wreath'
-];
-var HALLOWEEN_CARDS = [
-    'axe',
-    'bat',
-    'bats',
-    'broom',
-    'cat',
-    'cauldron',
-    'cauldron2',
-    'coffin',
-    'dracula',
-    'evil-clown',
-    'eyes',
-    'frankenstein',
-    'ghost',
-    'ghost2',
-    'haunted-house',
-    'jason',
-    'kruger',
-    'magicball',
-    'moon',
-    'owl',
-    'potion',
-    'pumpkin',
-    'reaper',
-    'scream',
-    'skull',
-    'spirit',
-    'tombstone',
-    'voodoo',
-    'witch',
-    'witch-hat',
-    'zombie-hand'
-];
-var FOOD_CARDS = [
-    'apple',
-    'baguette',
-    'banana',
-    'blueberries',
-    'bread',
-    'cake',
-    'cake2',
-    'cheese',
-    'cheesecake',
-    'chips',
-    'dessert',
-    'donut',
-    'egg',
-    'fried-chicken',
-    'fries',
-    'grapes',
-    'hamburger',
-    'hot-dog',
-    'icecream',
-    'icecream2',
-    'japan-food',
-    'ketchup',
-    'kiwi',
-    'lemon',
-    'mango',
-    'meat',
-    'muffin',
-    'pear',
-    'pie',
-    'pizza',
-    'ramen',
-    'sandwich',
-    'spaghetti',
-    'strawberry',
-    'taco',
-    'toast',
-    'triple'
-];
+var XMAS_PACK = {
+    path: 'res/img/xmas/',
+    cards: [
+        'bell', 
+        'bells', 
+        'calendar',
+        'candles',
+        'candy',
+        'champagne',
+        'dessert',
+        'elf',
+        'gift',
+        'gingerbread',
+        'gloves',
+        'hat',
+        'heart',
+        'letter',
+        'ornament',
+        'ornament2',
+        'ornament3',
+        'ornament4',
+        'polar-bear',
+        'reindeer',
+        'santa-smile',
+        'santa-sunglasses',
+        'sled',
+        'snowglobe',
+        'snowglobe2',
+        'snowglobe3',
+        'snowman',
+        'sock',
+        'star',
+        'tree',
+        'wreath'
+    ]
+}
+var HALLOWEEN_PACK = {
+    path: 'res/img/halloween/',
+    cards: [
+        'axe',
+        'bat',
+        'bats',
+        'broom',
+        'cat',
+        'cauldron',
+        'cauldron2',
+        'coffin',
+        'dracula',
+        'evil-clown',
+        'eyes',
+        'frankenstein',
+        'ghost',
+        'ghost2',
+        'haunted-house',
+        'jason',
+        'kruger',
+        'magicball',
+        'moon',
+        'owl',
+        'potion',
+        'pumpkin',
+        'reaper',
+        'scream',
+        'skull',
+        'spirit',
+        'tombstone',
+        'voodoo',
+        'witch',
+        'witch-hat',
+        'zombie-hand'
+    ]
+} 
+var FOOD_PACK = {
+    path: 'res/img/food/',
+    cards: [
+        'apple',
+        'baguette',
+        'banana',
+        'blueberries',
+        'bread',
+        'cake',
+        'cake2',
+        'cheese',
+        'cheesecake',
+        'chips',
+        'dessert',
+        'donut',
+        'egg',
+        'fried-chicken',
+        'fries',
+        'grapes',
+        'hamburger',
+        'hot-dog',
+        'icecream',
+        'icecream2',
+        'japan-food',
+        'ketchup',
+        'kiwi',
+        'lemon',
+        'mango',
+        'meat',
+        'muffin',
+        'pear',
+        'pie',
+        'pizza',
+        'ramen',
+        'sandwich',
+        'spaghetti',
+        'strawberry',
+        'taco',
+        'toast',
+        'triple'
+    ]
+}
+
 
 class AudioController {
     constructor() {
@@ -145,12 +155,12 @@ class Game {
         this.flips = document.querySelector('#flips');
         this.audioController = new AudioController();
     }
-    startGame(cardNumber, cardSet) {
-        const board = document.querySelector('.card-container');
-        board.innerHTML = '';
+    startGame(cardNumber, pack) {
+        
         this.cardToCheck = null;
-        this.cardsArray = this.selectCards(cardNumber, cardSet);
-        populateBoard(board, this.cardsArray);
+        this.cardsArray = this.selectCards(cardNumber, pack.cards);
+
+        populateBoard(pack, this.cardsArray);
         const cards = Array.from(document.getElementsByClassName('card'));
         cards.forEach(card => {
             card.addEventListener('click', () => {
@@ -207,13 +217,13 @@ class Game {
     gameOver() {
         clearInterval(this.countDown);
         this.audioController.gameOver();
-        document.querySelector('#game-over-text').classList.add('visible');
+        document.querySelector('#game-over-text').classList.remove('hidden');
         this.hideCards();
     }
     victory() {
         clearInterval(this.countDown);
         this.audioController.victory();
-        document.querySelector('#victory-text').classList.add('visible');
+        document.querySelector('#victory-text').classList.remove('hidden');
     }
     flipCard(card) {
         if(this.canFlipCard(card)) {
@@ -261,8 +271,9 @@ class Game {
     }
 }
 
-function populateBoard(board, cardSet) {
-    const path = 'res/img/food/';
+function populateBoard(pack, cardSet) {
+    const board = document.querySelector('.card-container');
+        board.innerHTML = '';
     for (let i = 1; i <= 20; i++) {
         
         const card = document.createElement('div');
@@ -271,8 +282,8 @@ function populateBoard(board, cardSet) {
         const cardBackFileName = '0_card-back';
 
         //corner decorations shared for both card Back and Front
-        const decorationSrc = `${path}${decorationFileName}.png`;
-        const cardBackSrc = `${path}${cardBackFileName}.png`;
+        const decorationSrc = `${pack.path}${decorationFileName}.png`;
+        const cardBackSrc = `${pack.path}${cardBackFileName}.png`;
         const topLeftImg = document.createElement('img');
         topLeftImg.classList.add('card-decoration');
         topLeftImg.classList.add('top-left');
@@ -328,7 +339,7 @@ function populateBoard(board, cardSet) {
 
         const imgFront = document.createElement('img');
         imgFront.classList.add('card-value');
-        const imgSrc = `${path}${cardSet[i-1]}.png`;
+        const imgSrc = `${pack.path}${cardSet[i-1]}.png`;
 
         imgFront.src = imgSrc;
         // console.log(imgFront.src);
@@ -344,15 +355,42 @@ function populateBoard(board, cardSet) {
         board.appendChild(card);
     }
 }
+function fillDifficultySelect() {
+    const selectDifficulty = document.querySelector('#selectDifficulty');
+    const difficulties = ['Fácil', 'Medio', 'Difícil', 'Insano'];
+    for (let index = 0; index < difficulties.length; index++) {
+        selectDifficulty.options[selectDifficulty.options.length] = new Option(difficulties[index], index);       
+    }
+}
+function fillThemesSelect() {
+    const selectTheme = document.querySelector('#selectTheme');
+    const themes = ['Animales', 'Comida', 'Navidad', 'Halloween'];
+    for (let index = 0; index < themes.length; index++) {
+        selectTheme.options[selectTheme.options.length] = new Option(themes[index], index);       
+    }
+}
+
 
 function ready() {
-    let overlays = Array.from(document.getElementsByClassName('overlay-text'));   
+    fillDifficultySelect();
+    fillThemesSelect();
+    const startGameBtn = document.querySelector('#startGame');
+    startGameBtn.addEventListener('click', () => {
+        const settingsDiv = document.querySelector('.settings');
+        settingsDiv.classList.add('hidden');
+        const startOverlay = document.querySelector('#start-game-text');
+        startOverlay.classList.remove('hidden');
+    })
+    const overlays = Array.from(document.getElementsByClassName('overlay-text'));   
     const game = new Game(60);   
+    const gameContainer = document.querySelector('.game-container');
     
     overlays.forEach(overlay => {
         overlay.addEventListener('click', () => {
-            overlay.classList.remove('visible');
-            game.startGame(20, FOOD_CARDS);
+            // overlay.classList.remove('visible');
+            overlay.classList.add('hidden');
+            gameContainer.classList.remove('hidden');
+            game.startGame(20, FOOD_PACK);
         });
     });
 }

@@ -10,9 +10,52 @@ body {
     max-height: 100vh;
 }
 
+.settings {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.setting-select {
+    padding: 1rem;
+    margin: 0.25rem;    
+    font-size: 1.1rem;
+}
+
+#startGame {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#selectTheme, #selectDifficulty {
+    font-size: 1.120rem;
+    border-radius: 1rem;
+    padding: 0.25rem;
+    margin-left: 0.5rem;
+}
+
+.game-info-container {
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.game-info {
+    color: #FFBB89;
+    font-size: 3.5rem;
+}
+
 .overlay-text {
     position: fixed;
-    display: none; 
+    display: flex;
+    flex-direction: column;
+    animation: overlay-grow 500ms forwards;
     top: 0;
     left: 0;
     right: 0;
@@ -29,12 +72,12 @@ body {
     font-size: .3em;
 }
 
-.overlay-text.visible {
+/* .overlay-text.visible {
     display: flex;
     flex-direction: column;
     animation: overlay-grow 500ms forwards;
+} */
 
-}
 .card-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -42,7 +85,8 @@ body {
     grid-gap: 5px;
     /* max-height: 50vh; */
     width: 50%;
-    margin: 20px auto;
+    margin: 15px auto;
+    padding-bottom: 15px;
 }
 
 .card {
@@ -142,6 +186,10 @@ body {
     grid-column-end: 4;
 }
 
+.hidden {
+    display: none;
+}
+
 @keyframes overlay-grow {
     from {
         background-color: rgba(0, 0, 0, 0);
@@ -173,3 +221,29 @@ body {
       transform: rotate(360deg);
     }
   }
+  @media (max-width: 900px) {
+    .card-container {
+        grid-template-columns: repeat(4, auto);
+    }
+    
+    .game-info-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .game-info {
+        font-size: 1.5rem;
+    }
+}
+  @media (max-width: 600px) {
+    .card-container {
+        grid-template-columns: repeat(2, auto);
+    }
+    
+    .game-info-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .game-info {
+        font-size: 1rem;
+    }
+}
