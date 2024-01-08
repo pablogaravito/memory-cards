@@ -9,7 +9,7 @@ body {
     text-align: center;
     max-height: 100vh;
     background-image: linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
-    
+    user-select: none;
 }
 
 body.in-game {
@@ -38,7 +38,7 @@ body.in-game {
 }
 
 .settings-select {
-    grid-row: 2 / 3
+    grid-row: 2 / 3;
 }
 
 .setting-select {

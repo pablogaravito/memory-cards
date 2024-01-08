@@ -462,7 +462,7 @@ class Game {
     gameOver() {
         clearInterval(this.countDown);
         this.audioController.gameOver();
-        document.querySelector('#result').innerText = 'PERDISTE :C!';
+        document.querySelector('#result').innerText = 'PERDISTE :(!';
         document.querySelector('#game-ended-text').classList.remove('hidden');
         this.hideCards();
     }
