@@ -1,86 +1,53 @@
 var ANIMALS_PACK = {
-    path: 'res/img/animals',
+    path: 'res/img/animals/',
     cards: [
         'bird',
         'bird2',
         'bull',
         'camel',
         'cat',
-        'cat2'
-    ]
-}
-var XMAS_PACK = {
-    path: 'res/img/xmas/',
-    cards: [
-        'bell', 
-        'bells', 
-        'calendar',
-        'candles',
-        'candy',
-        'champagne',
-        'dessert',
-        'elf',
-        'gift',
-        'gingerbread',
-        'gloves',
-        'hat',
-        'heart',
-        'letter',
-        'ornament',
-        'ornament2',
-        'ornament3',
-        'ornament4',
-        'polar-bear',
-        'reindeer',
-        'santa-smile',
-        'santa-sunglasses',
-        'sled',
-        'snowglobe',
-        'snowglobe2',
-        'snowglobe3',
-        'snowman',
-        'sock',
-        'star',
-        'tree',
-        'wreath'
-    ]
-}
-var HALLOWEEN_PACK = {
-    path: 'res/img/halloween/',
-    cards: [
-        'axe',
-        'bat',
-        'bats',
-        'broom',
-        'cat',
-        'cauldron',
-        'cauldron2',
-        'coffin',
-        'dracula',
-        'evil-clown',
-        'eyes',
-        'frankenstein',
-        'ghost',
-        'ghost2',
-        'haunted-house',
-        'jason',
-        'kruger',
-        'magicball',
-        'moon',
+        'cat2',
+        'cat3',
+        'cat4',
+        'cobra',
+        'cow',
+        'crab',
+        'deer',
+        'deer2',
+        'deer3',
+        'dog',
+        'dolphin',
+        'duck',
+        'elephant',
+        'fish',
+        'fish2',
+        'fox',
+        'frog',
+        'giraffe',
+        'goat',
+        'goose',
+        'horse',
+        'horse2',
+        'kangaroo',
+        'koala',
+        'lion',
+        'lion2',
+        'monkey',
+        'mouse',
         'owl',
-        'potion',
-        'pumpkin',
-        'reaper',
-        'scream',
-        'skull',
-        'spirit',
-        'tombstone',
-        'voodoo',
-        'witch',
-        'witch-hat',
-        'zombie-hand'
+        'panda',
+        'panda2',
+        'pig',
+        'rhino',
+        'seal',
+        'tiger',
+        'turtle',
+        'white-tiger',
+        'wolf',
+        'zebra',
+        'zebra2'
     ]
-} 
+}
 var FOOD_PACK = {
     path: 'res/img/food/',
     cards: [
@@ -91,10 +58,17 @@ var FOOD_PACK = {
         'bread',
         'cake',
         'cake2',
+        'cake3',
+        'cake4',
         'cheese',
         'cheesecake',
+        'cheesecake2',
+        'cherry',
         'chips',
+        'cookie',
+        'cupcake',
         'dessert',
+        'dessert2',
         'donut',
         'egg',
         'fried-chicken',
@@ -107,20 +81,231 @@ var FOOD_PACK = {
         'japan-food',
         'ketchup',
         'kiwi',
+        'kiwi2',
         'lemon',
         'mango',
         'meat',
         'muffin',
+        'muffin2',
         'pear',
         'pie',
         'pizza',
+        'popcorn',
         'ramen',
+        'raspberry',
         'sandwich',
+        'sardines',
         'spaghetti',
         'strawberry',
+        'strawberry2',
         'taco',
         'toast',
-        'triple'
+        'triple',
+        'watermelon'
+    ]
+}
+var HALLOWEEN_PACK = {
+    path: 'res/img/halloween/',
+    cards: [
+        'axe',
+        'bat',
+        'bats',
+        'broom',
+        'candy',
+        'candy2',
+        'cat',
+        'cauldron',
+        'cauldron2',
+        'cauldron3',
+        'cauldron4',
+        'coffin',
+        'dracula',
+        'dracula2',
+        'evil-clown',
+        'eye',
+        'eyes',
+        'frankenstein',
+        'frankenstein2',
+        'ghost',
+        'ghost2',
+        'haunted-house',
+        'kruger',
+        'magicball',
+        'moon',
+        'owl',
+        'potion',
+        'pumpkin',
+        'pumpkin2',
+        'reaper',
+        'scream',
+        'skull',
+        'spider',
+        'tombstone',
+        'tombstone2',
+        'voodoo',
+        'witch',
+        'witch-hat',
+        'witch-hat2',
+        'zombie',
+        'zombie2',
+        'zombie-hand',
+        'zombie-hand2'
+    ]
+}
+var POKEMON_PACK = {
+    path: 'res/img/pokemon/',
+    cards: [
+        'abra',
+        'bellsprout',
+        'bulbasaur',
+        'caterpie',
+        'charmander',
+        'charmander2',
+        'dratini',
+        'eevee',
+        'jigglypuff',
+        'mankey',
+        'meowth',
+        'mew',
+        'pidgey',
+        'pikachu',
+        'pikachu2',
+        'psyduck',
+        'rattata',
+        'rocket',
+        'snorlax',
+        'squirtle',
+        'venonat',
+        'weedle',
+        'zubat'
+    ]
+}
+var SPORT_PACK = {
+    path: 'res/img/sport/',
+    cards: [
+        'archery', 
+        'badminton',
+        'baseball',
+        'basketball',
+        'basketball2',
+        'bowling',
+        'box',
+        'box2',
+        'champion',
+        'dart',
+        'dumbbell',
+        'football',
+        'football2',
+        'football3',
+        'football4',
+        'golf',
+        'golf2',
+        'gymnastics',
+        'iceskate',
+        'pool',
+        'soccer',
+        'soccer2',
+        'soccer3',
+        'sumo',
+        'table-tennis',
+        'table-tennis2',
+        'tennis',
+        'tennis2',
+        'trophy',
+        'voleyball'
+    ]
+}
+var STUDY_PACK = {
+    path: 'res/img/study/',
+    cards: [
+        'abacus',
+        'abacus2',
+        'abc',
+        'adn',
+        'atom',
+        'board',
+        'books',
+        'boy',
+        'calculator',
+        'certificate',
+        'certificate2',
+        'chemistry',
+        'compass',
+        'drawing',
+        'girl',
+        'globe',
+        'globe2',
+        'graduation',
+        'graduation2',
+        'handbook',
+        'highlighter',
+        'ideas',
+        'lamp',
+        'math',
+        'microscope',
+        'note',
+        'note2',
+        'paint',
+        'stars',
+        'todo',
+        'tube',
+        'tubes',
+        'university',
+        'writing'
+    ]
+}
+var XMAS_PACK = {
+    path: 'res/img/xmas/',
+    cards: [
+        'baubles',
+        'bell', 
+        'bells', 
+        'boy',
+        'calendar',
+        'candle',
+        'candles',
+        'candy',
+        'champagne',
+        'dessert',
+        'elf',
+        'gift',
+        'gift2',
+        'gingerbread',
+        'gingerbread2',
+        'girl',
+        'gloves',
+        'hat',
+        'heart',
+        'home',
+        'letter',
+        'omela',
+        'ornament',
+        'ornament2',
+        'ornament3',
+        'ornament4',
+        'ornament5',
+        'ornament6',
+        'ornament7',
+        'pie',
+        'polar-bear',
+        'reindeer',
+        'reindeer2',
+        'santa-smile',
+        'santa-sunglasses',
+        'sled',
+        'snowglobe',
+        'snowglobe2',
+        'snowglobe3',
+        'snowman',
+        'snowman2',
+        'snowman3',
+        'sock',
+        'star',
+        'star2',
+        'stocking',
+        'tree',
+        'wreath',
+        'wreath2'
     ]
 }
 
@@ -192,16 +377,25 @@ class Game {
         let currentTheme;
         switch(theme.toLocaleLowerCase()) {
             case 'animales':
-                currentTheme = XMAS_PACK;
+                currentTheme = ANIMALS_PACK;
                 break;
-            case 'navidad':
-                currentTheme = XMAS_PACK;
+            case 'comida':
+                currentTheme = FOOD_PACK;
+                break;
+            case 'deporte':
+                currentTheme = SPORT_PACK;
+                break;
+            case 'estudio':
+                currentTheme = STUDY_PACK;
                 break;
             case 'halloween':
                 currentTheme = HALLOWEEN_PACK;
                 break;
-            case 'comida':
-                currentTheme = FOOD_PACK;
+            case 'navidad':
+                currentTheme = XMAS_PACK;
+                break; 
+            case 'pokemon':
+                currentTheme = POKEMON_PACK;
                 break;
             default:
                 currentTheme = XMAS_PACK;
@@ -334,14 +528,17 @@ function populateBoard(pack, cardSet) {
             board.style.gridTemplateRows = 'repeat(3, 1fr)';
             break;
         case 18:
-            board.style.maxWidth = '65%';
+            board.style.maxWidth = '70%';
+            board.style.gridTemplateColumns = 'repeat(6, 1fr)'; 
             board.style.gridTemplateRows = 'repeat(3, 1fr)';
             break;
         case 24:
             board.style.maxWidth = '60%';
+            board.style.gridTemplateColumns = 'repeat(6, 1fr)'; 
             board.style.gridTemplateRows = 'repeat(4, 1fr)';
             break;
         case 32:
+            board.style.maxWidth = '80%';
             board.style.gridTemplateColumns = 'repeat(8, 1fr)';  
             board.style.gridTemplateRows = 'repeat(4, 1fr)';
             break;
@@ -441,7 +638,7 @@ function fillDifficultySelect() {
 }
 function fillThemesSelect() {
     const selectTheme = document.querySelector('#selectTheme');
-    const themes = ['Animales', 'Comida', 'Navidad', 'Halloween'];
+    const themes = ['Animales', 'Comida', 'Deporte', 'Estudio', 'Halloween', 'Navidad', 'Pokemon'];
     for (let index = 0; index < themes.length; index++) {
         selectTheme.options[selectTheme.options.length] = new Option(themes[index], index);       
     }
