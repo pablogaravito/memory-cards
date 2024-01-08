@@ -14,28 +14,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- <h1 class="page-title">Entrena tu memoria!</h1> -->
-    <!-- <div class="selects">
-        <div class="item">
+    <div class="settings">
+      <h1 class="title">JUEGO DE MEMORIA</h1>
+      <div class="settings-select">
+        <div class="setting-select">
           <label for="selectDifficulty">Selecciona un nivel:</label>
           <select name="selectDifficulty" id="selectDifficulty"></select>
         </div>
-
-        <div class="item">
-          <label for="selectWordList">Selecciona un tema:</label>
-          <select name="selectWordList" id="selectWordList"></select>
+        <div class="setting-select">
+          <label for="selectTheme">Selecciona un tema:</label>
+          <select name="selectTheme" id="selectTheme"></select>
         </div>
-      </div> -->
-    <div class="settings">
-      <div class="setting-select">
-        <label for="selectDifficulty">Selecciona un nivel:</label>
-        <select name="selectDifficulty" id="selectDifficulty"></select>
+        <button id="startGame">Jugar!</button>
       </div>
-      <div class="setting-select">
-        <label for="selectTheme">Selecciona un tema:</label>
-        <select name="selectTheme" id="selectTheme"></select>
-      </div>
-      <button id="startGame">Jugar!</button>
     </div>
     <div id="start-game-text" class="overlay-text hidden">
       Click para Empezar
@@ -51,11 +42,6 @@
         >
       </div>
     </div>
-    <!-- <div id="victory-text" class="overlay-text hidden">
-      VICTORIA!
-      <span class="overlay-text-small">Click aquí para reiniciar</span>
-    </div> -->
-
     <div class="game-container hidden">
       <div class="game-info-container">
         <div class="game-info">Tiempo <span id="time-remaining">100</span></div>

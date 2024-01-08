@@ -8,11 +8,7 @@
 body {
     text-align: center;
     max-height: 100vh;
-    /* background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%); */
-    /* background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); */
-    /* background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); */
-    /* background-image: linear-gradient(to top, #dbdcd7 0%, #dddcd7 24%, #e2c9cc 30%, #e7627d 46%, #b8235a 59%, #801357 71%, #3d1635 84%, #1c1a27 100%); */
-    background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+    background-image: linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
     
 }
 
@@ -21,13 +17,29 @@ body.in-game {
 }
 
 .settings {
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     height: 100vh;
-    display: flex;
+    margin: 0 auto;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: space-evenly;
 }
 
+.title {
+    font-weight: 700;
+    font-size: 4.4rem;
+    color: #ff006e;
+    margin: 1rem auto;
+    grid-row: 1 / 2;
+}
+
+.settings-select {
+    grid-row: 2 / 3
+}
 
 .setting-select {
     padding: 0.5rem;
@@ -37,14 +49,13 @@ body.in-game {
 }
 
 #startGame {
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 2rem;
     border: none;
     border-radius: 1rem;
     margin-top: 0.8rem;
     font-size: 1.5rem;
     font-weight: 700;
     cursor: pointer;
-    /* background-color: #fdc500; */
     background-color: #ef233c;
     color: whitesmoke;
     transition: transform ease-in-out 200ms;
@@ -82,8 +93,6 @@ body.in-game {
     font-weight: 700;
 }
 
-
-
 .overlay-text {
     position: fixed;
     display: flex;
@@ -97,7 +106,6 @@ body.in-game {
     align-items: center;
     z-index: 100;
     color: #ff006e;
-    /* font-family: Creepy, serif; */
     user-select: none;
 }
 
@@ -117,30 +125,18 @@ body.in-game {
     transform: scale(1.1);
 }
 
-/* .overlay-text.visible {
-    display: flex;
-    flex-direction: column;
-    animation: overlay-grow 500ms forwards;
-} */
-
 .card-container {
     display: grid;
     max-width: 75%;
     max-height: 90vh; 
     grid-template-columns: repeat(6, 1fr);
-    /* grid-template-rows: repeat(auto, 1fr); */
     grid-gap: 5px;
-    /* max-height: 90vh;
-    max-width: 80%; */
-    /* width: 75%; */
-    /* width: auto;; */
     margin: 15px auto;
     padding-bottom: 15px;
 }
 
 .card {
-    display: grid;
-    
+    display: grid;   
     border: 1px solid crimson;
 }
 
@@ -168,15 +164,11 @@ body.in-game {
 }
 
 .card-front {
-    /* background-color: bisque; */
-    /* background-color: rgb(255, 238, 209); */
     background-color: #faedcd;
     transform: rotateY(180deg);
 }
 
 .card-back {
-    /* background-color: rgb(225, 215, 195); */
-    /* background-color: #FDF7E4; */
     background-color: #fefae0;
 }
 .card.visible .card-back {

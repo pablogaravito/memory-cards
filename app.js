@@ -83,7 +83,6 @@ var FOOD_PACK = {
         'kiwi',
         'kiwi2',
         'lemon',
-        'mango',
         'meat',
         'muffin',
         'muffin2',
@@ -312,8 +311,6 @@ var XMAS_PACK = {
 var difficulty = -1;
 var theme = '';
 
-
-
 class AudioController {
     constructor() {
         // this.bgMusic = new Audio('res/audio/creepy.mp3');
@@ -418,7 +415,6 @@ class Game {
         this.timeRemaining = this.totalTime;
         this.matchedCards = [];
         this.busy = true;
-        // console.log(this.selectCards(20));
         setTimeout(() => {
             // this.audioController.startMusic();
             this.countDown = this.startCountDown();
@@ -550,7 +546,7 @@ function populateBoard(pack, cardSet) {
             break;
     }
 
-        board.innerHTML = '';
+    board.innerHTML = '';
     for (let i = 1; i <= numCards; i++) {
         
         const card = document.createElement('div');
@@ -619,7 +615,6 @@ function populateBoard(pack, cardSet) {
         const imgSrc = `${pack.path}${cardSet[i-1]}.png`;
 
         imgFront.src = imgSrc;
-        // console.log(imgFront.src);
         cardFront.appendChild(topLeftImg2);
         cardFront.appendChild(bottomLeftImg2);
         cardFront.appendChild(topRightImg2);
@@ -652,8 +647,6 @@ function defineGame() {
     const selectTheme = document.querySelector('#selectTheme');
     difficulty = parseInt(selectDifficulty.value);
     theme = selectTheme.selectedOptions[0].text;
-    console.log(difficulty);
-    console.log(theme);
 }
 
 function ready() {
@@ -667,18 +660,9 @@ function ready() {
         const startOverlay = document.querySelector('#start-game-text');
         startOverlay.classList.remove('hidden');
     })
-    // const overlays = Array.from(document.getElementsByClassName('overlay-text'));   
     const game = new Game(60);   
     const gameContainer = document.querySelector('.game-container');
-    
-    // overlays.forEach(overlay => {
-    //     overlay.addEventListener('click', () => {
-    //         // overlay.classList.remove('visible');
-    //         overlay.classList.add('hidden');
-    //         gameContainer.classList.remove('hidden');
-    //         game.startGame();
-    //     });
-    // });
+
     const startGameOverLay = document.querySelector('#start-game-text');
     const restartOverlay = document.querySelector('#restart-overlay');
     const settingsOverlay = document.querySelector('#settings-overlay');
@@ -689,7 +673,6 @@ function ready() {
     });
     restartOverlay.addEventListener('click', () => {
         document.querySelector('#game-ended-text').classList.add('hidden');
-        // gameContainer.classList.remove('hidden');
         game.startGame();
     });
     settingsOverlay.addEventListener('click', () => {
@@ -697,9 +680,7 @@ function ready() {
         document.body.classList.remove('in-game');
         gameContainer.classList.add('hidden');
         document.querySelector('.settings').classList.remove('hidden');
-        // game.startGame();
     });
-
 }
 
 if (document.readyState === 'loading') {
