@@ -314,10 +314,10 @@ var theme = '';
 class AudioController {
     constructor() {
         // this.bgMusic = new Audio('res/audio/creepy.mp3');
-        this.flipSound = new Audio('res/audio/flip.mp3');
-        this.matchSound = new Audio('res/audio/match.mp3');
-        this.victorySound = new Audio('res/audio/victory.mp3');
-        this.gameOverSound = new Audio('res/audio/gameover.mp3');
+        this.flipSound = new Audio('https://github.com/pablogaravito/memory-cards/raw/master/res/audio/flip.wav');
+        this.matchSound = new Audio('https://github.com/pablogaravito/memory-cards/raw/master/res/audio/match.wav');
+        this.victorySound = new Audio('https://github.com/pablogaravito/memory-cards/raw/master/res/audio/victory.wav');
+        this.gameOverSound = new Audio('https://github.com/pablogaravito/memory-cards/raw/master/res/audio/gameOver.wav');
         // this.bgMusic.volume = 0.3;
         // this.bgMusic.loop = true;
     }
