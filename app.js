@@ -1,3 +1,14 @@
+var ANIMALS_PACK = {
+    path: 'res/img/animals',
+    cards: [
+        'bird',
+        'bird2',
+        'bull',
+        'camel',
+        'cat',
+        'cat2'
+    ]
+}
 var XMAS_PACK = {
     path: 'res/img/xmas/',
     cards: [
@@ -172,7 +183,7 @@ class Game {
                 cardNumber = 24;
                 break;
             case 3:
-                cardNumber = 30;
+                cardNumber = 32;
                 break;
             default:
                 cardNumber = 18;
@@ -256,13 +267,16 @@ class Game {
     gameOver() {
         clearInterval(this.countDown);
         this.audioController.gameOver();
-        document.querySelector('#game-over-text').classList.remove('hidden');
+        document.querySelector('#result').innerText = 'PERDISTE :C!';
+        document.querySelector('#game-ended-text').classList.remove('hidden');
         this.hideCards();
     }
     victory() {
         clearInterval(this.countDown);
         this.audioController.victory();
-        document.querySelector('#victory-text').classList.remove('hidden');
+        document.querySelector('#result').innerText = 'VICTORIA!';
+        document.querySelector('#game-ended-text').classList.remove('hidden');
+
     }
     flipCard(card) {
         if(this.canFlipCard(card)) {
@@ -312,8 +326,32 @@ class Game {
 
 function populateBoard(pack, cardSet) {
     const board = document.querySelector('.card-container');
+    const numCards = cardSet.length;
+    switch(numCards) {
+        case 12:
+            board.style.maxWidth = '50%';
+            board.style.gridTemplateColumns = 'repeat(4, 1fr)'; 
+            board.style.gridTemplateRows = 'repeat(3, 1fr)';
+            break;
+        case 18:
+            board.style.maxWidth = '65%';
+            board.style.gridTemplateRows = 'repeat(3, 1fr)';
+            break;
+        case 24:
+            board.style.maxWidth = '60%';
+            board.style.gridTemplateRows = 'repeat(4, 1fr)';
+            break;
+        case 32:
+            board.style.gridTemplateColumns = 'repeat(8, 1fr)';  
+            board.style.gridTemplateRows = 'repeat(4, 1fr)';
+            break;
+        default:
+            board.style.gridTemplateRows = 'repeat(3, 1fr)';
+            break;
+    }
+
         board.innerHTML = '';
-    for (let i = 1; i <= cardSet.length; i++) {
+    for (let i = 1; i <= numCards; i++) {
         
         const card = document.createElement('div');
         card.classList.add('card');
@@ -429,18 +467,38 @@ function ready() {
         const startOverlay = document.querySelector('#start-game-text');
         startOverlay.classList.remove('hidden');
     })
-    const overlays = Array.from(document.getElementsByClassName('overlay-text'));   
+    // const overlays = Array.from(document.getElementsByClassName('overlay-text'));   
     const game = new Game(60);   
     const gameContainer = document.querySelector('.game-container');
     
-    overlays.forEach(overlay => {
-        overlay.addEventListener('click', () => {
-            // overlay.classList.remove('visible');
-            overlay.classList.add('hidden');
-            gameContainer.classList.remove('hidden');
-            game.startGame();
-        });
+    // overlays.forEach(overlay => {
+    //     overlay.addEventListener('click', () => {
+    //         // overlay.classList.remove('visible');
+    //         overlay.classList.add('hidden');
+    //         gameContainer.classList.remove('hidden');
+    //         game.startGame();
+    //     });
+    // });
+    const startGameOverLay = document.querySelector('#start-game-text');
+    const restartOverlay = document.querySelector('#restart-overlay');
+    const settingsOverlay = document.querySelector('#settings-overlay');
+    startGameOverLay.addEventListener('click', () => {
+        startGameOverLay.classList.add('hidden');
+        gameContainer.classList.remove('hidden');
+        game.startGame();
     });
+    restartOverlay.addEventListener('click', () => {
+        document.querySelector('#game-ended-text').classList.add('hidden');
+        // gameContainer.classList.remove('hidden');
+        game.startGame();
+    });
+    settingsOverlay.addEventListener('click', () => {
+        document.querySelector('#game-ended-text').classList.add('hidden');
+        gameContainer.classList.add('hidden');
+        document.querySelector('.settings').classList.remove('hidden');
+        // game.startGame();
+    });
+
 }
 
 if (document.readyState === 'loading') {

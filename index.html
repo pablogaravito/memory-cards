@@ -39,14 +39,20 @@
     <div id="start-game-text" class="overlay-text hidden">
       Click para Empezar
     </div>
-    <div id="game-over-text" class="overlay-text hidden">
-      PERDISTE!
-      <span class="overlay-text-small">Click aquí para reiniciar</span>
+    <div id="game-ended-text" class="overlay-text hidden">
+      <span id="result"></span>
+      <div class="game-ended-options">
+        <span id="restart-overlay" class="overlay-text-small">Reiniciar?</span>
+        <span id="settings-overlay" class="overlay-text-small"
+          >Ir a ajustes
+        </span>
+      </div>
     </div>
-    <div id="victory-text" class="overlay-text hidden">
+    <!-- <div id="victory-text" class="overlay-text hidden">
       VICTORIA!
       <span class="overlay-text-small">Click aquí para reiniciar</span>
-    </div>
+    </div> -->
+
     <div class="game-container hidden">
       <div class="game-info-container">
         <div class="game-info">Tiempo <span id="time-remaining">100</span></div>
