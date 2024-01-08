@@ -543,6 +543,8 @@ function populateBoard(pack, cardSet) {
             board.style.gridTemplateRows = 'repeat(4, 1fr)';
             break;
         default:
+            board.style.maxWidth = '70%';
+            board.style.gridTemplateColumns = 'repeat(6, 1fr)'; 
             board.style.gridTemplateRows = 'repeat(3, 1fr)';
             break;
     }
