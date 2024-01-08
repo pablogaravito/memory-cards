@@ -403,6 +403,7 @@ class Game {
 
         this.cardToCheck = null;
         this.cardsArray = this.selectCards(cardNumber, currentTheme.cards);
+        document.body.classList.add('in-game');
 
         populateBoard(currentTheme, this.cardsArray);
         const cards = Array.from(document.getElementsByClassName('card'));
@@ -693,6 +694,7 @@ function ready() {
     });
     settingsOverlay.addEventListener('click', () => {
         document.querySelector('#game-ended-text').classList.add('hidden');
+        document.body.classList.remove('in-game');
         gameContainer.classList.add('hidden');
         document.querySelector('.settings').classList.remove('hidden');
         // game.startGame();

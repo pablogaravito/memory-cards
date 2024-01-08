@@ -2,12 +2,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 body {
     text-align: center;
     max-height: 100vh;
+    /* background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%); */
+    /* background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); */
+    /* background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); */
+    /* background-image: linear-gradient(to top, #dbdcd7 0%, #dddcd7 24%, #e2c9cc 30%, #e7627d 46%, #b8235a 59%, #801357 71%, #3d1635 84%, #1c1a27 100%); */
+    background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+    
+}
+
+body.in-game {
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
 }
 
 .settings {
@@ -18,18 +28,30 @@ body {
     justify-content: center;
 }
 
+
 .setting-select {
     padding: 0.5rem;
     margin: 0.25rem;    
     font-size: 1.1rem;
+    font-weight: 700;
 }
 
 #startGame {
     padding: 0.5rem 1rem;
+    border: none;
     border-radius: 1rem;
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
     font-size: 1.5rem;
+    font-weight: 700;
     cursor: pointer;
+    /* background-color: #fdc500; */
+    background-color: #ef233c;
+    color: whitesmoke;
+    transition: transform ease-in-out 200ms;
+}
+
+#startGame:hover {
+    transform: scale(1.1);
 }
 
 #selectTheme, #selectDifficulty {
@@ -49,15 +71,18 @@ body {
 .game-info-container {
     height: 10%;
     display: flex;
-    /* width: 50%; */
+    width: 50%;
     margin: 0 auto;
     justify-content: space-between;
 }
 
 .game-info {
-    color: #FFBB89;
+    color: #f27059; 
     font-size: 3.5rem;
+    font-weight: 700;
 }
+
+
 
 .overlay-text {
     position: fixed;
@@ -71,13 +96,25 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 100;
-    color: #ff2f00;
+    color: #ff006e;
     /* font-family: Creepy, serif; */
     user-select: none;
 }
 
+.game-ended-options {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+
 .overlay-text-small {
+    cursor: pointer;
+    color: #ffbe0b;
+    transition: transform ease-in-out 200ms;
     font-size: .3em;
+}
+.overlay-text-small:hover {
+    transform: scale(1.1);
 }
 
 /* .overlay-text.visible {
@@ -103,7 +140,7 @@ body {
 
 .card {
     display: grid;
-    background-color: beige;
+    
     border: 1px solid crimson;
 }
 
@@ -131,9 +168,17 @@ body {
 }
 
 .card-front {
+    /* background-color: bisque; */
+    /* background-color: rgb(255, 238, 209); */
+    background-color: #faedcd;
     transform: rotateY(180deg);
 }
 
+.card-back {
+    /* background-color: rgb(225, 215, 195); */
+    /* background-color: #FDF7E4; */
+    background-color: #fefae0;
+}
 .card.visible .card-back {
     transform: rotateY(-180deg);
 }
