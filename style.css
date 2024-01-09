@@ -31,7 +31,7 @@ body.in-game {
 
 .title {
     font-weight: 700;
-    font-size: 4.4rem;
+    font-size: 4.8rem;
     color: #ff006e;
     margin: 1rem auto;
     grid-row: 1 / 2;
@@ -56,7 +56,8 @@ body.in-game {
     font-size: 1.5rem;
     font-weight: 700;
     cursor: pointer;
-    background-color: #ef233c;
+    /* background-color: #ef233c; */
+    background-color: #ff006e;
     color: whitesmoke;
     transition: transform ease-in-out 200ms;
 }
@@ -109,8 +110,17 @@ body.in-game {
     user-select: none;
 }
 
+#result {
+    font-size: 6rem;
+}
+
+#details {
+    font-size: 2.5rem;
+}
+
 .game-ended-options {
     display: flex;
+    margin-top: 5rem;
     width: 50%;
     justify-content: space-between;
 }
@@ -119,7 +129,7 @@ body.in-game {
     cursor: pointer;
     color: #ffbe0b;
     transition: transform ease-in-out 200ms;
-    font-size: .3em;
+    font-size: 3rem;
 }
 .overlay-text-small:hover {
     transform: scale(1.1);

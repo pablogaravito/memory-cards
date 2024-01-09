@@ -110,19 +110,18 @@ var HALLOWEEN_PACK = {
         'bat',
         'bats',
         'broom',
+        'candle',
         'candy',
         'candy2',
         'cat',
         'cauldron',
-        'cauldron2',
-        'cauldron3',
-        'cauldron4',
+        'cauldron2',   
         'coffin',
         'dracula',
-        'dracula2',
         'evil-clown',
         'eye',
         'eyes',
+        'face',
         'frankenstein',
         'frankenstein2',
         'ghost',
@@ -132,6 +131,7 @@ var HALLOWEEN_PACK = {
         'magicball',
         'moon',
         'owl',
+        'panic',
         'potion',
         'pumpkin',
         'pumpkin2',
@@ -146,9 +146,7 @@ var HALLOWEEN_PACK = {
         'witch-hat',
         'witch-hat2',
         'zombie',
-        'zombie2',
         'zombie-hand',
-        'zombie-hand2'
     ]
 }
 var POKEMON_PACK = {
@@ -191,7 +189,6 @@ var SPORT_PACK = {
         'box',
         'box2',
         'champion',
-        'dart',
         'dumbbell',
         'football',
         'football2',
@@ -219,12 +216,12 @@ var STUDY_PACK = {
     cards: [
         'abacus',
         'abacus2',
-        'abc',
         'adn',
         'atom',
         'board',
         'books',
         'boy',
+        'brain',
         'calculator',
         'certificate',
         'certificate2',
@@ -238,6 +235,7 @@ var STUDY_PACK = {
         'graduation2',
         'handbook',
         'highlighter',
+        'idea',
         'ideas',
         'lamp',
         'math',
@@ -352,11 +350,14 @@ class Game {
     constructor(totalTime) {     
         this.totalTime = totalTime;
         this.timeRemaining = totalTime;
+        this.matches = 0;
+
         this.timer = document.querySelector('#time-remaining');
         this.flips = document.querySelector('#flips');
         this.audioController = new AudioController();
     }
     startGame() {
+        this.matches = 0;
         let cardNumber;
         switch(difficulty) {
             case 0:
@@ -462,7 +463,8 @@ class Game {
     gameOver() {
         clearInterval(this.countDown);
         this.audioController.gameOver();
-        document.querySelector('#result').innerText = 'PERDISTE :(!';
+        document.querySelector('#result').innerText = 'Se acabó el tiempo!';
+        document.querySelector('#details').innerText = `Lograste ${this.matches} de ${(this.cardsArray.length)/2} aciertos`;
         document.querySelector('#game-ended-text').classList.remove('hidden');
         this.hideCards();
     }
@@ -470,6 +472,7 @@ class Game {
         clearInterval(this.countDown);
         this.audioController.victory();
         document.querySelector('#result').innerText = 'VICTORIA!';
+        document.querySelector('#details').innerText = `Te tomó ${this.totalTime - this.timeRemaining} segundos y ${this.currentFlips} jugadas!`;
         document.querySelector('#game-ended-text').classList.remove('hidden');
 
     }
@@ -505,6 +508,7 @@ class Game {
         this.audioController.match();
         if (this.matchedCards.length === this.cardsArray.length)
             this.victory();
+        this.matches++;
     }
     cardMisMatch(card1, card2) {
         this.busy = true;
@@ -521,30 +525,36 @@ class Game {
 
 function populateBoard(pack, cardSet) {
     const board = document.querySelector('.card-container');
+    const gameInfoContainer = document.querySelector('.game-info-container');
     const numCards = cardSet.length;
     switch(numCards) {
         case 12:
             board.style.maxWidth = '50%';
+            gameInfoContainer.style.width = '50%';
             board.style.gridTemplateColumns = 'repeat(4, 1fr)'; 
             board.style.gridTemplateRows = 'repeat(3, 1fr)';
             break;
         case 18:
             board.style.maxWidth = '70%';
+            gameInfoContainer.style.width = '70%';
             board.style.gridTemplateColumns = 'repeat(6, 1fr)'; 
             board.style.gridTemplateRows = 'repeat(3, 1fr)';
             break;
         case 24:
             board.style.maxWidth = '60%';
+            gameInfoContainer.style.width = '60%';
             board.style.gridTemplateColumns = 'repeat(6, 1fr)'; 
             board.style.gridTemplateRows = 'repeat(4, 1fr)';
             break;
         case 32:
             board.style.maxWidth = '80%';
+            gameInfoContainer.style.width = '80%';
             board.style.gridTemplateColumns = 'repeat(8, 1fr)';  
             board.style.gridTemplateRows = 'repeat(4, 1fr)';
             break;
         default:
             board.style.maxWidth = '70%';
+            gameInfoContainer.style.width = '70%';
             board.style.gridTemplateColumns = 'repeat(6, 1fr)'; 
             board.style.gridTemplateRows = 'repeat(3, 1fr)';
             break;
