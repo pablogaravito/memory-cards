@@ -480,14 +480,6 @@ class Game {
     victory() {
         clearInterval(this.countDown);
         this.audioController.victory();
-        // const selectLevel = document.querySelector('#selectLevel');
-        // const selectTheme = document.querySelector('#selectTheme');
-        // const flipsInput = document.querySelector('#flips');
-        // const flips = flipsInput.value;
-        // const timeInput = document.querySelector('#time');
-        // const time = timeInput.value;
-        // const theme = selectTheme.selectedOptions[0].text;
-        // const level = parseInt(selectDifficulty.value);
         addScore(game.totalTime-game.timeRemaining, game.currentFlips, theme, level);
     }
     flipCard(card) {
@@ -550,7 +542,6 @@ function fillScores() {
             }
         } 
      }
-     console.log(highScores);
      saveScores();
 }
 
@@ -650,6 +641,7 @@ function populateBoard(pack, cardSet) {
         bottomRightImg2.classList.add('card-decoration');
         bottomRightImg2.classList.add('bottom-right');
         bottomRightImg2.src = decorationSrc;
+
         //cardFront
         const cardFront = document.createElement('div');
         cardFront.classList.add('card-front');
@@ -700,7 +692,6 @@ function addScore(time, flips, theme, level) {
     currentType = highScores.find(score => {
         return score.theme === theme && score.level === level
     });
-    console.log(currentType);
     const record = {
         time: time,
         flips: flips,
@@ -786,7 +777,6 @@ function ready() {
     playerNameForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const dialog = document.querySelector('#playerNameDialog');
-    // dialog.show() // Opens a non-modal dialog
         dialog.close();
         const playerNameInput = document.querySelector('#playerNameInput');
         currentPlayer = playerNameInput.value;
@@ -800,14 +790,6 @@ function ready() {
         saveScores();
     });
 }
-
-// function readUsername() {
-//     return localStorage.getItem('username') || '';
-// }
-	
-// function saveUsername(value) {
-//     localStorage.setItem('username', value);
-// }
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
