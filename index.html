@@ -18,8 +18,8 @@
       <h1 class="title">ENTRENA TU MEMORIA!</h1>
       <div class="settings-select">
         <div class="setting-select">
-          <label for="selectDifficulty">Selecciona un nivel:</label>
-          <select name="selectDifficulty" id="selectDifficulty"></select>
+          <label for="selectLevel">Selecciona un nivel:</label>
+          <select name="selectLevel" id="selectLevel"></select>
         </div>
         <div class="setting-select">
           <label for="selectTheme">Selecciona un tema:</label>
@@ -50,7 +50,17 @@
       </div>
       <div class="card-container"></div>
     </div>
-
+    <dialog id="playerNameDialog">
+      <!-- <form method="dialog"> -->
+      <form id="playerNameForm" class="overlay-text-md">
+        <label for="playerNameInput"
+          ><p>Nuevo Record!</p>
+          <p>Ingresa tu nombre:</p>
+        </label>
+        <input id="playerNameInput" name="playerNameInput" type="text" />
+        <button id="playerNameBtn" type="submit">Guardar</button>
+      </form>
+    </dialog>
     <script src="app.js"></script>
   </body>
 </html>

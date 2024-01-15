@@ -306,8 +306,17 @@ var XMAS_PACK = {
     ]
 }
 
-var difficulty = -1;
+var themes = ['Animales', 'Comida', 'Deporte', 'Estudio', 'Halloween', 'Navidad', 'Pokemon'];
+var levels = ['Fácil', 'Medio', 'Difícil', 'Insano'];
+var highScores = readScores();
+
+var game = null;
+var level = -1;
 var theme = '';
+var currentRecords = [];
+var currentType = null;
+var currentIndex = -1;
+var currentPlayer = 'Anónimo';
 
 class AudioController {
     constructor() {
@@ -359,7 +368,7 @@ class Game {
     startGame() {
         this.matches = 0;
         let cardNumber;
-        switch(difficulty) {
+        switch(level) {
             case 0:
                 cardNumber = 12;
                 break;
@@ -471,10 +480,15 @@ class Game {
     victory() {
         clearInterval(this.countDown);
         this.audioController.victory();
-        document.querySelector('#result').innerText = 'VICTORIA!';
-        document.querySelector('#details').innerText = `Te tomó ${this.totalTime - this.timeRemaining} segundos y ${this.currentFlips} jugadas!`;
-        document.querySelector('#game-ended-text').classList.remove('hidden');
-
+        // const selectLevel = document.querySelector('#selectLevel');
+        // const selectTheme = document.querySelector('#selectTheme');
+        // const flipsInput = document.querySelector('#flips');
+        // const flips = flipsInput.value;
+        // const timeInput = document.querySelector('#time');
+        // const time = timeInput.value;
+        // const theme = selectTheme.selectedOptions[0].text;
+        // const level = parseInt(selectDifficulty.value);
+        addScore(game.totalTime-game.timeRemaining, game.currentFlips, theme, level);
     }
     flipCard(card) {
         if(this.canFlipCard(card)) {
@@ -521,6 +535,23 @@ class Game {
     canFlipCard(card) {
         return !this.busy && !this.matchedCards.includes(card) && card !== this.cardToCheck;
     }
+}
+
+function fillScores() {
+    for(let i = 0; i < themes.length; i++) {
+        if (!(highScores.some(e => e.theme === themes[i]))) {
+            for(let j = 0; j < levels.length; j++) {
+                let score = {
+                    theme: themes[i],
+                    level: j,
+                    records: []
+                }
+                highScores.push(score);
+            }
+        } 
+     }
+     console.log(highScores);
+     saveScores();
 }
 
 function populateBoard(pack, cardSet) {
@@ -641,30 +672,86 @@ function populateBoard(pack, cardSet) {
         board.appendChild(card);
     }
 }
-function fillDifficultySelect() {
-    const selectDifficulty = document.querySelector('#selectDifficulty');
-    const difficulties = ['Fácil', 'Medio', 'Difícil', 'Insano'];
-    for (let index = 0; index < difficulties.length; index++) {
-        selectDifficulty.options[selectDifficulty.options.length] = new Option(difficulties[index], index);       
+
+function fillLevelSelect() {
+    const selectDifficulty = document.querySelector('#selectLevel');
+    
+    for (let index = 0; index < levels.length; index++) {
+        selectDifficulty.options[selectDifficulty.options.length] = new Option(levels[index], index);       
     }
 }
 function fillThemesSelect() {
     const selectTheme = document.querySelector('#selectTheme');
-    const themes = ['Animales', 'Comida', 'Deporte', 'Estudio', 'Halloween', 'Navidad', 'Pokemon'];
+    
     for (let index = 0; index < themes.length; index++) {
         selectTheme.options[selectTheme.options.length] = new Option(themes[index], index);       
     }
 }
 
+function readScores() {
+    return JSON.parse(localStorage.getItem('highScores')) || [];
+}
+
+function saveScores() {
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+}
+
+function addScore(time, flips, theme, level) {
+    currentType = highScores.find(score => {
+        return score.theme === theme && score.level === level
+    });
+    console.log(currentType);
+    const record = {
+        time: time,
+        flips: flips,
+        name: '?'
+    }
+    if (currentType) {
+        compareScores(currentType.records, record);
+    }
+}
+
+function compareScores(records, currScore) {
+    let newArray = records.slice();
+    newArray.push(currScore);
+    newArray.sort(
+        function(a, b) {          
+           if (parseInt(a.time) === parseInt(b.time)) {
+              return parseInt(a.flips) - parseInt(b.flips);
+           }
+           return parseInt(a.time) > parseInt(b.time) ? 1 : -1;
+        });
+    newArray = newArray.slice(0, 5);
+    const i = newArray.indexOf(currScore);
+    if (i !== -1) {
+        currentRecords = newArray;
+        currentIndex = i;
+        const dialog = document.querySelector('#playerNameDialog');
+        dialog.showModal();
+    } else {
+        document.querySelector('#result').innerText = 'VICTORIA!';
+        document.querySelector('#details').innerText = `Te tomó ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
+        document.querySelector('#game-ended-text').classList.remove('hidden');
+    }
+}
+
 function defineGame() {
-    const selectDifficulty = document.querySelector('#selectDifficulty');
+    const selectLevel = document.querySelector('#selectLevel');
     const selectTheme = document.querySelector('#selectTheme');
-    difficulty = parseInt(selectDifficulty.value);
+    level = parseInt(selectLevel.value);
     theme = selectTheme.selectedOptions[0].text;
 }
 
-function ready() {
-    fillDifficultySelect();
+function restoreDefaults() {
+    currentRecords = [];
+    currentType = null;
+    currentIndex = -1;
+    currentPlayer = 'Anónimo';
+}
+
+function ready() {   
+    fillScores();
+    fillLevelSelect();
     fillThemesSelect();
     const startGameBtn = document.querySelector('#startGame');
     startGameBtn.addEventListener('click', () => {
@@ -674,7 +761,7 @@ function ready() {
         const startOverlay = document.querySelector('#start-game-text');
         startOverlay.classList.remove('hidden');
     })
-    const game = new Game(60);   
+    game = new Game(60);   
     const gameContainer = document.querySelector('.game-container');
 
     const startGameOverLay = document.querySelector('#start-game-text');
@@ -695,10 +782,36 @@ function ready() {
         gameContainer.classList.add('hidden');
         document.querySelector('.settings').classList.remove('hidden');
     });
+    const playerNameForm = document.querySelector('#playerNameForm');
+    playerNameForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const dialog = document.querySelector('#playerNameDialog');
+    // dialog.show() // Opens a non-modal dialog
+        dialog.close();
+        const playerNameInput = document.querySelector('#playerNameInput');
+        currentPlayer = playerNameInput.value;
+        playerNameInput.value = '';
+        currentRecords[currentIndex].name = currentPlayer;
+        currentType.records = currentRecords;
+        document.querySelector('#result').innerText = 'VICTORIA!';
+        document.querySelector('#details').innerText = `${currentPlayer}, te tomó ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
+        document.querySelector('#game-ended-text').classList.remove('hidden');
+        restoreDefaults();
+        saveScores();
+    });
 }
+
+// function readUsername() {
+//     return localStorage.getItem('username') || '';
+// }
+	
+// function saveUsername(value) {
+//     localStorage.setItem('username', value);
+// }
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
 } else {
     ready();
 }
+
