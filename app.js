@@ -791,7 +791,7 @@ function ready() {
         currentRecords[currentIndex].name = currentPlayer;
         currentType.records = currentRecords;
         document.querySelector('#result').innerText = 'VICTORIA!';
-        document.querySelector('#details').innerText = `${currentPlayer}, te tomó ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
+        document.querySelector('#details').innerText = `${currentPlayer}, lo lograste en ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
         document.querySelector('#game-ended-text').classList.remove('hidden');
         restoreDefaults();
         saveScores();

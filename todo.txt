@@ -1,0 +1,5 @@
+- cambiar tamaño selects y labels en modo celular
+- cuadro de honor (primeros 3 o 5, definir)
+- animación y sonido cuando no se puede hacer jugada aún
+- añadir los nuevos temas
+- chequear nro de versión?
