@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
 }
+html {
+    font-size: 15px;
+}
 
 body {
     text-align: center;
@@ -17,7 +20,6 @@ body.in-game {
 }
 
 .settings {
-    
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -25,7 +27,6 @@ body.in-game {
     margin: 0 auto;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
     justify-content: space-evenly;
 }
 
@@ -56,7 +57,6 @@ body.in-game {
     font-size: 1.5rem;
     font-weight: 700;
     cursor: pointer;
-    /* background-color: #ef233c; */
     background-color: #ff006e;
     color: whitesmoke;
     transition: transform ease-in-out 200ms;
@@ -114,7 +114,6 @@ body.in-game {
     position: fixed;
     display: flex;
     flex-direction: column;
-    /* animation: overlay-grow 500ms forwards; */
     top: 0;
     left: 0;
     right: 0;
@@ -135,7 +134,6 @@ body.in-game {
     font-size: 1.2rem;
     font-weight: 700;
     cursor: pointer;
-    /* background-color: #ef233c; */
     background-color: #ff006e;
     color: whitesmoke;
     transition: transform ease-in-out 200ms;
@@ -176,6 +174,7 @@ body.in-game {
 #details {
     font-size: 2.5rem;
 }
+
 
 .game-ended-options {
     display: flex;
@@ -387,7 +386,7 @@ body.in-game {
       transform: rotate(360deg);
     }
   }
-  @media (max-width: 900px) {
+  /* @media (max-width: 900px) {
     .card-container {
         grid-template-columns: repeat(4, auto);
     }
@@ -412,7 +411,7 @@ body.in-game {
     .game-info {
         font-size: 1rem;
     }
-}
+} */
 
 
 @media screen and (max-width: 992px) {
@@ -423,37 +422,100 @@ body.in-game {
 
 @media screen and (max-width: 767px) {
     /*phones*/
-
+    html {
+        font-size: 12.5px;
+    }   
     .title {
-        font-size: 3.3rem;
+        font-size: 3.5rem; 
     }
+    #start-game-text {
+        font-size: 3.5rem; 
+    }
+    
+    
     .card-container {
         width: 90%;
     }
     .game-info-container {
         width: 90%;
     }
+    .game-info {
+        font-size: 2rem;
+    }
     .card-container.easy {
         max-width: 90%;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(4, 1fr);
     }
+    .game-info-container.easy {
+        width: 90%;
+    }
+
     .card-container.mid {
         max-width: 90%;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(6, 1fr);
     }
+    .game-info-container.mid {
+        width: 90%;
+    }
+
     .card-container.hard {
         max-width: 90%;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(6, 1fr);
     }
+    .game-info-container.hard {
+        width: 90%;
+    }
+
     .card-container.insane {
         max-width: 90%;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(8, 1fr);
     }
-   
+    .game-info-container.insane {
+        width: 90%;
+    }
+
+    .game-ended-options {
+        width: 90%;
+        font-size: 3.5rem;
+    }
+    }
+
+    #result {
+        font-size: 5rem;
+        margin-bottom: 1rem;
+    }
+
+    #details {
+        width: 90%;
+        font-size: 2.5rem;
+    }
+
+    @keyframes overlay-grow {
+        from {
+            background-color: rgba(0, 0, 0, 0);
+            font-size: 0;
+        }
+        to {
+            background-color: rgba(0, 0, 0, .8);
+            font-size: 4.4em;
+        }
+    }
+
+    @keyframes overlay-grow-md {
+        from {
+            background-color: rgba(0, 0, 0, 0);
+            font-size: 0;
+        }
+        to {
+            background-color: rgba(0, 0, 0, .8);
+            font-size: 3em;
+        }
+    }
+    
 }
 
 /* @media screen and (max-width: 576px) {

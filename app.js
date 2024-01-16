@@ -728,7 +728,7 @@ function compareScores(records, currScore) {
         dialog.showModal();
     } else {
         document.querySelector('#result').innerText = 'VICTORIA!';
-        document.querySelector('#details').innerText = `Te tomó ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
+        document.querySelector('#details').innerText = `Lo lograste en ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
         document.querySelector('#game-ended-text').classList.remove('hidden');
     }
 }
