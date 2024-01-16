@@ -1,9 +1,11 @@
 var ANIMALS_PACK = {
     path: 'res/img/animals/',
     cards: [
+        'bee',
         'bird',
         'bird2',
         'bull',
+        'butterfly',
         'camel',
         'cat',
         'cat2',
@@ -30,6 +32,7 @@ var ANIMALS_PACK = {
         'horse2',
         'kangaroo',
         'koala',
+        'ladybug',
         'lion',
         'lion2',
         'monkey',
@@ -551,34 +554,38 @@ function populateBoard(pack, cardSet) {
     const numCards = cardSet.length;
     switch(numCards) {
         case 12:
-            board.style.maxWidth = '50%';
-            gameInfoContainer.style.width = '50%';
-            board.style.gridTemplateColumns = 'repeat(4, 1fr)'; 
-            board.style.gridTemplateRows = 'repeat(3, 1fr)';
+            // board.style.maxWidth = '50%';
+            // gameInfoContainer.style.width = '50%';
+            // board.style.gridTemplateColumns = 'repeat(4, 1fr)'; 
+            // board.style.gridTemplateRows = 'repeat(3, 1fr)';
+            board.classList.remove('mid', 'hard', 'insane');
+            board.classList.add('easy');
+            gameInfoContainer.classList.remove('mid', 'hard', 'insane');
+            gameInfoContainer.classList.add('easy');
             break;
         case 18:
-            board.style.maxWidth = '70%';
-            gameInfoContainer.style.width = '70%';
-            board.style.gridTemplateColumns = 'repeat(6, 1fr)'; 
-            board.style.gridTemplateRows = 'repeat(3, 1fr)';
+            board.classList.remove('easy', 'hard', 'insane');
+            board.classList.add('mid');
+            gameInfoContainer.classList.remove('easy', 'hard', 'insane');
+            gameInfoContainer.classList.add('mid');
             break;
         case 24:
-            board.style.maxWidth = '60%';
-            gameInfoContainer.style.width = '60%';
-            board.style.gridTemplateColumns = 'repeat(6, 1fr)'; 
-            board.style.gridTemplateRows = 'repeat(4, 1fr)';
+            board.classList.remove('easy', 'mid', 'insane');
+            board.classList.add('hard');
+            gameInfoContainer.classList.remove('easy', 'mid', 'insane');
+            gameInfoContainer.classList.add('hard');
             break;
         case 32:
-            board.style.maxWidth = '80%';
-            gameInfoContainer.style.width = '80%';
-            board.style.gridTemplateColumns = 'repeat(8, 1fr)';  
-            board.style.gridTemplateRows = 'repeat(4, 1fr)';
+            board.classList.remove('easy', 'mid', 'hard');
+            board.classList.add('insane');
+            gameInfoContainer.classList.remove('easy', 'mid', 'hard');
+            gameInfoContainer.classList.add('insane');
             break;
         default:
-            board.style.maxWidth = '70%';
-            gameInfoContainer.style.width = '70%';
-            board.style.gridTemplateColumns = 'repeat(6, 1fr)'; 
-            board.style.gridTemplateRows = 'repeat(3, 1fr)';
+            board.classList.remove('easy', 'hard', 'insane');
+            board.classList.add('mid');
+            gameInfoContainer.classList.remove('easy', 'hard', 'insane');
+            gameInfoContainer.classList.add('mid');
             break;
     }
 

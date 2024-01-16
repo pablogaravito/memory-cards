@@ -205,6 +205,42 @@ body.in-game {
     padding-bottom: 15px;
 }
 
+.card-container.easy {
+    max-width: 50%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+.game-info-container.easy {
+    width: 50%;
+}
+
+.card-container.mid {
+    max-width: 70%;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+.game-info-container.mid {
+    width: 70%;
+}
+
+.card-container.hard {
+    max-width: 60%;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+.game-info-container.hard {
+    width: 60%;
+}
+
+.card-container.insane {
+    max-width: 80%;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+.game-info-container.insane {
+    width: 80%;
+}
+
 .card {
     display: grid;   
     border: 1px solid crimson;
@@ -377,3 +413,50 @@ body.in-game {
         font-size: 1rem;
     }
 }
+
+
+@media screen and (max-width: 992px) {
+    /*phones and tablets*/
+
+}
+
+
+@media screen and (max-width: 767px) {
+    /*phones*/
+
+    .title {
+        font-size: 3.3rem;
+    }
+    .card-container {
+        width: 90%;
+    }
+    .game-info-container {
+        width: 90%;
+    }
+    .card-container.easy {
+        max-width: 90%;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+    .card-container.mid {
+        max-width: 90%;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+    .card-container.hard {
+        max-width: 90%;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+    .card-container.insane {
+        max-width: 90%;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+    }
+   
+}
+
+/* @media screen and (max-width: 576px) {
+    /*small phones
+
+} */
