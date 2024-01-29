@@ -1019,10 +1019,6 @@ class Game {
         }
         let currentTheme;
 
-        /**
-         * var themes = ['Alto en Suculencia', 'Animales', 'Animales Cute', 'Animales para niños', 'Campamento', 'Comida', 'Cool Animals 1', 'Cool Animals 2', 'Cuentos de Hadas', 'Deporte', 'Estudio', 'Frutas', 'Halloween', 'Huevos de Pascua', 'Jengibre', 'Mar', 'Navidad', 'Navidad 2', 'Perros', 'Plástico', 'Pokemon'];
-         */
-
         switch(theme.toLocaleLowerCase()) {
             case 'alto en suculencia':
                 currentTheme = SWEETANDFAT_PACK;
@@ -1230,10 +1226,6 @@ function populateBoard(pack, cardSet) {
     const numCards = cardSet.length;
     switch(numCards) {
         case 12:
-            // board.style.maxWidth = '50%';
-            // gameInfoContainer.style.width = '50%';
-            // board.style.gridTemplateColumns = 'repeat(4, 1fr)'; 
-            // board.style.gridTemplateRows = 'repeat(3, 1fr)';
             board.classList.remove('mid', 'hard', 'insane');
             board.classList.add('easy');
             gameInfoContainer.classList.remove('mid', 'hard', 'insane');
@@ -1307,7 +1299,6 @@ function populateBoard(pack, cardSet) {
         cardBack.appendChild(bottomRightImg);
         cardBack.appendChild(imgBack);
 
-
         const topLeftImg2 = document.createElement('img');
         topLeftImg2.classList.add('card-decoration');
         topLeftImg2.classList.add('top-left');
@@ -1333,17 +1324,14 @@ function populateBoard(pack, cardSet) {
         const imgFront = document.createElement('img');
         imgFront.classList.add('card-value');
         const imgSrc = `${pack.path}${cardSet[i-1]}.png`;
-
         imgFront.src = imgSrc;
         cardFront.appendChild(topLeftImg2);
         cardFront.appendChild(bottomLeftImg2);
         cardFront.appendChild(topRightImg2);
         cardFront.appendChild(bottomRightImg2);
         cardFront.appendChild(imgFront);
-
         card.appendChild(cardBack);
         card.appendChild(cardFront);
-
         board.appendChild(card);
     }
 }
@@ -1378,7 +1366,7 @@ function addScore(time, flips, theme, level) {
     const record = {
         time: time,
         flips: flips,
-        name: '?'
+        name: ''
     }
     if (currentType) {
         compareScores(currentType.records, record);
