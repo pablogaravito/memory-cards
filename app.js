@@ -948,7 +948,7 @@ var theme = '';
 var currentRecords = [];
 var currentType = null;
 var currentIndex = -1;
-var currentPlayer = 'Anónimo';
+var currentPlayer = '';
 
 class AudioController {
     constructor() {
@@ -988,11 +988,9 @@ class AudioController {
 }
 
 class Game {
-    constructor(totalTime) {     
-        this.totalTime = totalTime;
-        this.timeRemaining = totalTime;
-        this.matches = 0;
-
+    constructor() {     
+		// this.totalTime = 60;
+		// this.timeRemaining = this.totalTime;
         this.timer = document.querySelector('#time-remaining');
         this.flips = document.querySelector('#flips');
         this.audioController = new AudioController();
@@ -1002,21 +1000,28 @@ class Game {
         let cardNumber;
         switch(level) {
             case 0:
+				this.totalTime = 80;
                 cardNumber = 12;
                 break;
             case 1:
+				this.totalTime = 70;
                 cardNumber = 18;
                 break;
             case 2:
+				this.totalTime = 60;
                 cardNumber = 24;
                 break;
             case 3:
+				this.totalTime = 65;
                 cardNumber = 32;
                 break;
             default:
+				this.totalTime = 60;
                 cardNumber = 18;
                 break;
         }
+
+		this.timeRemaining = this.totalTime;
         let currentTheme;
 
         switch(theme.toLocaleLowerCase()) {
@@ -1387,9 +1392,51 @@ function compareScores(records, currScore) {
     const i = newArray.indexOf(currScore);
     if (i !== -1) {
         currentRecords = newArray;
+		currentType.records = currentRecords;
         currentIndex = i;
-        const dialog = document.querySelector('#playerNameDialog');
-        dialog.showModal();
+        /* const dialog = document.querySelector('#playerNameDialog');
+        dialog.showModal(); */
+		/* const recordsContainer = document.querySelector('.records-container'); */
+		const recordsContainer = document.querySelector('.dividendo');
+		recordsContainer.classList.remove('hidden');
+		saveScores();
+		console.log(theme);
+		console.log(level);
+		readRecords(theme, level);
+		const cell = document.querySelector(`.pos${i+1}`);
+        const input = cell.querySelector('.name > input[type=text]');
+        input.placeholder = 'Tu nombre...';
+        input.classList.remove('noselect');
+        input.removeAttribute('readonly');
+        input.focus();
+
+		input.addEventListener('blur', () => {
+            input.classList.add('noselect');
+            input.setAttribute('readonly', true);
+            const newName = input.value;
+            const arrowBtn = document.querySelector('#arrow-img');
+            arrowBtn.classList.add('enabled');
+            currentPlayer = newName;
+            currentType.records[i].name = currentPlayer;
+            saveScores();
+            readRecords(theme, level);
+			// restoreDefaults();
+        });    
+        
+        input.addEventListener('keyup', e => {
+            if (e.key === "Enter") {
+                input.classList.add('noselect');
+                input.setAttribute('readonly', true);
+                const newName = input.value;
+                const arrowBtn = document.querySelector('#arrow-img');
+                arrowBtn.classList.add('enabled');
+				currentPlayer = newName;
+                currentType.records[i].name = currentPlayer;
+                saveScores();
+                readRecords(theme, level);
+				// restoreDefaults();
+            }
+        });
     } else {
         document.querySelector('#result').innerText = 'VICTORIA!';
         document.querySelector('#details').innerText = `Lo lograste en ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
@@ -1408,7 +1455,45 @@ function restoreDefaults() {
     currentRecords = [];
     currentType = null;
     currentIndex = -1;
-    currentPlayer = 'Anónimo';
+    currentPlayer = '';
+}
+
+function readRecords(theme, level) {
+    highScores = readScores();
+    currentType = highScores.find(score => {
+        return score.theme === theme && score.level === level
+    });
+    let currRecords;
+    if (currentType) {
+        currRecords = currentType.records;
+    } else {
+        currRecords = [];
+    }
+
+	console.log(currentType);
+	console.log(currRecords);
+    
+    for (let index = 0; index < 5; index++) {
+        let cell = document.querySelector(`.pos${index+1}`);
+        if (currRecords[index]) {
+            const nameDiv = cell.querySelector('.name');
+            nameDiv.innerHTML = '';
+            const nameInput = document.createElement('input');
+            nameInput.setAttribute('type', 'text');
+            nameInput.setAttribute('value', currRecords[index].name);
+            nameInput.classList.add('noselect');
+            nameInput.setAttribute('readonly', true);
+            nameInput.setAttribute('maxlength', 12);
+            nameDiv.appendChild(nameInput);
+
+            cell.querySelector('.time').innerText = currRecords[index].time;
+            cell.querySelector('.flips').innerText = currRecords[index].flips;
+        } else {
+            cell.querySelector('.name > input[type=text]').value = '-';
+            cell.querySelector('.time').innerText = '-';
+            cell.querySelector('.flips').innerText = '-';
+        }
+    }
 }
 
 function ready() {   
@@ -1422,8 +1507,21 @@ function ready() {
         settingsDiv.classList.add('hidden');
         const startOverlay = document.querySelector('#start-game-text');
         startOverlay.classList.remove('hidden');
-    })
-    game = new Game(60);   
+    });
+	const arrowBtn = document.querySelector('#arrow-img');
+    arrowBtn.addEventListener('click', () => {
+        if (!(arrowBtn.classList.contains('enabled'))) {
+            return;
+        } else {
+            arrowBtn.classList.remove('enabled');
+			document.querySelector('.dividendo').classList.add('hidden'); 
+			document.querySelector('#result').innerText = 'FELICIDADES! NUEVO RECORD!';
+			document.querySelector('#details').innerText = `${currentPlayer}, lo lograste en ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
+			document.querySelector('#game-ended-text').classList.remove('hidden');
+			restoreDefaults();
+        }
+    });
+    game = new Game();   
     const gameContainer = document.querySelector('.game-container');
 
     const startGameOverLay = document.querySelector('#start-game-text');
@@ -1444,7 +1542,7 @@ function ready() {
         gameContainer.classList.add('hidden');
         document.querySelector('.settings').classList.remove('hidden');
     });
-    const playerNameForm = document.querySelector('#playerNameForm');
+    /* const playerNameForm = document.querySelector('#playerNameForm');
     playerNameForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const dialog = document.querySelector('#playerNameDialog');
@@ -1459,7 +1557,7 @@ function ready() {
         document.querySelector('#game-ended-text').classList.remove('hidden');
         restoreDefaults();
         saveScores();
-    });
+    }); */
 }
 
 if (document.readyState === 'loading') {
