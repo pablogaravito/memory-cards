@@ -428,6 +428,190 @@ body.in-game {
     color: #a75265;
 }
 
+
+/* CREDITS SECTION */
+.credits-container {
+    position: fixed;
+    display: flex;
+    animation: overlay-grow-md 750ms forwards;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.credits-content {
+    display: grid;
+    grid-template-columns: 3.3fr 3fr 1fr;
+    grid-template-rows: 2.2fr 2.2fr 1fr;
+    width: 44%;
+    max-height: 80vh;
+    color: #d31b43;
+    background-color: #b87abe;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.created-by {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    align-self: end;
+    justify-self: center;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 1rem;
+}
+
+.creator {
+    grid-row: 2/3;
+    grid-column: 1/2;
+    align-self: start;
+    justify-self: center;
+    font-size: 5.3rem;
+    letter-spacing: 5px;
+    font-weight: 700;
+    font-family: "Luckiest Guy", cursive;
+    text-shadow:
+    0 1px #808d93,
+    -1px 0 #cdd2d5,
+    -1px 2px #808d93,
+    -2px 1px #cdd2d5,
+    -2px 3px #808d93,
+    -3px 2px #cdd2d5,
+    -3px 4px #808d93,
+    -4px 3px #cdd2d5,
+    -4px 5px #808d93,
+    -5px 4px #cdd2d5,
+    -5px 6px #808d93,
+    -6px 5px #cdd2d5,
+    -6px 7px #808d93,
+    -7px 6px #cdd2d5,
+    -7px 8px #808d93,
+    -8px 7px #cdd2d5;
+}
+
+.img-container {
+    grid-row: 1/3;
+    grid-column: 2/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100%;
+    align-self: center;
+    justify-self: center;
+    padding-top: 1rem;
+} 
+
+.creator-img {
+    align-self: center;
+    justify-self: center;
+    max-width: 90%;
+}
+
+#exit-credits {
+    grid-row: 3/4;
+    grid-column: 1/4;
+    align-self: center;
+    justify-self: center;
+    padding: 1.25rem 2.5rem;
+    border: none;
+    border-radius: 1rem;
+    margin-top: 0.8rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: #ff006e;
+    color: whitesmoke;
+}
+
+#exit-credits:hover {
+    transform: scale(1.1);
+}
+
+.imgs-credits {
+    grid-row: 3/4;
+    grid-column: 3/4;
+    align-self: center;
+    justify-self: center;
+    font-size: 1rem;
+}
+
+.github-info {
+    grid-row: 3/4;
+    grid-column: 1/2;
+    width: 100%;
+    align-self: center;
+    justify-self: center;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.github-img {
+    width: 2.5rem;
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+}
+
+.p-link {
+    margin-top: 0.20rem;
+}
+
+/* MUTE AND CREDITS BUTTONS */
+.img-button {
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 0.8rem;  
+    width: 100%;
+    height: 100%;
+    transition: transform ease-in-out 200ms;
+    filter: brightness(1);
+    background-color: #fb8b24; 
+    border: 0.25rem solid black;
+}
+
+.img-button:hover {
+    filter: brightness(0.95);
+}
+
+.img-button:active {
+    transform: scale(0.95);
+}
+
+/* MUTE BUTTON */
+#mute-btn {
+    position: absolute;
+    left: 0;
+    top: 5%;
+    width: 4rem;
+    height: 4rem;
+    margin-left: 0.3rem;
+}
+
+/* MUTE BUTTON */
+#mute-btn {
+    position: absolute;
+    left: 0;
+    top: 5%;
+    width: 4rem;
+    height: 4rem;
+    margin-left: 0.8rem;
+}
+
+#credits-btn {
+    position: absolute;
+    right: 0;
+    bottom: 5%;
+    width: 4rem;
+    height: 4rem;
+    margin-right: 0.8rem;
+}
+
 /* UTILITY CLASSES */
 .noselect {
     user-select: none;

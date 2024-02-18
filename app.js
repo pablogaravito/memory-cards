@@ -949,6 +949,7 @@ var currentRecords = [];
 var currentType = null;
 var currentIndex = -1;
 var currentPlayer = '';
+var soundOn = JSON.parse(localStorage.getItem('soundOn')) || true;
 
 class AudioController {
     constructor() {
@@ -1012,7 +1013,7 @@ class Game {
                 cardNumber = 24;
                 break;
             case 3:
-				this.totalTime = 65;
+				this.totalTime = 57;
                 cardNumber = 32;
                 break;
             default:
@@ -1151,7 +1152,7 @@ class Game {
     }
     gameOver() {
         clearInterval(this.countDown);
-        this.audioController.gameOver();
+		if (soundOn) this.audioController.gameOver();
         document.querySelector('#result').innerText = 'Se acabó el tiempo!';
         document.querySelector('#details').innerText = `Lograste ${this.matches} de ${(this.cardsArray.length)/2} aciertos`;
         document.querySelector('#game-ended-text').classList.remove('hidden');
@@ -1159,12 +1160,12 @@ class Game {
     }
     victory() {
         clearInterval(this.countDown);
-        this.audioController.victory();
+        if (soundOn) this.audioController.victory();
         addScore(game.totalTime-game.timeRemaining, game.currentFlips, theme, level);
     }
     flipCard(card) {
         if(this.canFlipCard(card)) {
-            this.audioController.flip();
+            if (soundOn) this.audioController.flip();
             this.currentFlips++;
             this.flips.innerText = this.currentFlips;
             card.classList.add('visible');
@@ -1191,7 +1192,7 @@ class Game {
         this.matchedCards.push(card2);
         card1.classList.add('matched');
         card2.classList.add('matched');
-        this.audioController.match();
+        if (soundOn) this.audioController.match();
         if (this.matchedCards.length === this.cardsArray.length)
             this.victory();
         this.matches++;
@@ -1362,6 +1363,10 @@ function readScores() {
 
 function saveScores() {
     localStorage.setItem('highScores', JSON.stringify(highScores));
+}
+
+function saveSoundSetting() {
+	localStorage.setItem('soundOn', JSON.stringify(soundOn));
 }
 
 function addScore(time, flips, theme, level) {
@@ -1538,6 +1543,27 @@ function ready() {
         document.body.classList.remove('in-game');
         gameContainer.classList.add('hidden');
         document.querySelector('.settings').classList.remove('hidden');
+    });
+	const muteBtn = document.querySelector('#mute-btn');
+    muteBtn.addEventListener('click', () => {
+        const muteImg = document.querySelector('#mute-img');
+        if (soundOn) {
+            muteImg.src = 'res/special/sound_on.png';
+        } else {
+            muteImg.src = 'res/special/sound_off.png';
+        }
+        soundOn = !soundOn;
+		saveSoundSetting();
+    }); 
+	const showCreditsBtn = document.querySelector('#credits-btn');
+    showCreditsBtn.addEventListener('click', () => {
+        const credits = document.querySelector('.credits-container');
+        credits.classList.remove('hidden');
+    });
+    const exitCreditsBtn = document.querySelector('#exit-credits');
+    exitCreditsBtn.addEventListener('click', () => {
+        const credits = document.querySelector('.credits-container');
+        credits.classList.add('hidden');
     });
 }
 
