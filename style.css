@@ -8,10 +8,9 @@ html {
     font-size: 15px;
 }
 body {
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
-    /* text-align: center; */
+    justify-content: center; */
     max-height: 100vh;
     background-image: linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
     -webkit-touch-callout: none; /* iOS Safari */
@@ -32,9 +31,6 @@ body.in-game {
     grid-template-rows: 1fr 1fr 0.75fr;
     height: 100vh;
     margin: 0 auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
 }
 .main-title {
     font-weight: 700;
@@ -76,6 +72,7 @@ body.in-game {
     border-radius: 1rem;
     padding: 0.25rem;
     margin-left: 0.5rem;
+    text-align: center;
 }
 .game-container {
     min-height: 100vh;
@@ -97,8 +94,8 @@ body.in-game {
     font-size: 3.5rem;
     font-weight: 700;
 }
-/* OVERLAYS */
 
+/* OVERLAYS */
 .overlay-text-small {
     cursor: pointer;
     color: #ffbe0b;
@@ -108,21 +105,7 @@ body.in-game {
 .overlay-text-small:hover {
     transform: scale(1.1);
 }
-/* .overlay-text-md {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    animation: overlay-grow-md 500ms forwards;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    color: #ff006e;
-    user-select: none;
-} */
+
 .overlay-text {
     position: fixed;
     display: flex;
@@ -154,43 +137,7 @@ body.in-game {
     color: #ff006e;
     user-select: none;
 }
-#playerNameForm {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    color: #ffbe0b;
-    transition: transform ease-in-out 200ms;
-    font-size: 4.4rem;
-}
-#playerNameBtn {
-    margin-top: 1rem;
-    padding: 0.8rem 2rem;
-    border: none;
-    border-radius: 1rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-    cursor: pointer;
-    background-color: #ff006e;
-    color: whitesmoke;
-    transition: transform ease-in-out 200ms;
-}
-#playerNameBtn:hover {
-    transform: scale(1.1);
-}
-#playerNameInput {
-    font-size: 1.2rem;
-    padding: 0.8rem 1.5rem;
-    border-radius: 1rem;
-    font-weight: 700;
-    text-align: center;
-}
+
 #result {
     font-size: 6rem;
 }
@@ -574,7 +521,6 @@ body.in-game {
     /*phones and tablets*/
 
 }
-
 
 @media screen and (max-width: 767px) {
     /*phones*/

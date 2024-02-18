@@ -938,7 +938,7 @@ var XMAS2_PACK = {
 	]
 }
 
-var themes = ['Alto en Suculencia', 'Animales', 'Animales Cute', 'Animales para niños', 'Campamento', 'Comida', 'Cool Animals 1', 'Cool Animals 2', 'Cuentos de Hadas', 'Deporte', 'Estudio', 'Frutas', 'Halloween', 'Huevos de Pascua', 'Jengibre', 'Mar', 'Navidad', 'Navidad 2', 'Perros', 'Plástico', 'Pokemon'];
+var themes = ['Animales I', 'Animales II', 'Animales III', 'Campamento', 'Comida', 'Cool Animals I', 'Cool Animals II', 'Cuentos de Hadas', 'Deporte', 'Estudio', 'Frutas', 'Halloween', 'Huevos de Pascua', 'Jengibre', 'Mar', 'Navidad I', 'Navidad II', 'Perros', 'Plástico', 'Pokemon', 'Suculento'];
 var levels = ['Fácil', 'Medio', 'Difícil', 'Insano'];
 var highScores = readScores();
 
@@ -1025,16 +1025,16 @@ class Game {
         let currentTheme;
 
         switch(theme.toLocaleLowerCase()) {
-            case 'alto en suculencia':
+            case 'suculento':
                 currentTheme = SWEETANDFAT_PACK;
                 break;
-            case 'animales':
+            case 'animales i':
                 currentTheme = ANIMALS_PACK;
                 break;
-            case 'animales cute':
+            case 'animales ii':
                 currentTheme = CUTEANIMALS_PACK;
                 break;
-            case 'animales para niños':
+            case 'animales iii':
                 currentTheme = ANIMALS4CHILDREN_PACK;
                 break;
             case 'campamento':
@@ -1043,10 +1043,10 @@ class Game {
             case 'comida':
                 currentTheme = FOOD_PACK;
                 break;
-            case 'cool animals 1':
+            case 'cool animals i':
                 currentTheme = INCOGNITO1_PACK;
                 break;
-            case 'cool animals 2':
+            case 'cool animals ii':
                 currentTheme = INCOGNITO2_PACK;
                 break;
             case 'cuentos de hadas':
@@ -1073,10 +1073,10 @@ class Game {
             case 'mar':
                 currentTheme = SEASIDE_PACK;
                 break;
-            case 'navidad':
+            case 'navidad i':
                 currentTheme = XMAS_PACK;
                 break; 
-            case 'navidad 2':
+            case 'navidad ii':
                 currentTheme = XMAS2_PACK;
                 break; 
             case 'perros':
@@ -1394,9 +1394,6 @@ function compareScores(records, currScore) {
         currentRecords = newArray;
 		currentType.records = currentRecords;
         currentIndex = i;
-        /* const dialog = document.querySelector('#playerNameDialog');
-        dialog.showModal(); */
-		/* const recordsContainer = document.querySelector('.records-container'); */
 		const recordsContainer = document.querySelector('.dividendo');
 		recordsContainer.classList.remove('hidden');
 		saveScores();
@@ -1542,22 +1539,6 @@ function ready() {
         gameContainer.classList.add('hidden');
         document.querySelector('.settings').classList.remove('hidden');
     });
-    /* const playerNameForm = document.querySelector('#playerNameForm');
-    playerNameForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const dialog = document.querySelector('#playerNameDialog');
-        dialog.close();
-        const playerNameInput = document.querySelector('#playerNameInput');
-        currentPlayer = playerNameInput.value;
-        playerNameInput.value = '';
-        currentRecords[currentIndex].name = currentPlayer;
-        currentType.records = currentRecords;
-        document.querySelector('#result').innerText = 'VICTORIA!';
-        document.querySelector('#details').innerText = `${currentPlayer}, lo lograste en ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
-        document.querySelector('#game-ended-text').classList.remove('hidden');
-        restoreDefaults();
-        saveScores();
-    }); */
 }
 
 if (document.readyState === 'loading') {
