@@ -102,6 +102,7 @@ body.in-game {
     color: #ffbe0b;
     transition: transform ease-in-out 200ms;
     font-size: 3rem;
+    text-align: center;
 }
 .overlay-text-small:hover {
     transform: scale(1.1);
@@ -176,12 +177,12 @@ body.in-game {
 }
 
 .card-container.mid {
-    max-width: 70%;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    max-width: 50%;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 .game-info-container.mid {
-    width: 70%;
+    width: 50%;
 }
 
 .card-container.hard {
@@ -734,6 +735,7 @@ body.in-game {
     }
     .game-info-container {
         width: 90%;
+        padding-left: 2rem;
     }
     .game-info {
         font-size: 2rem;
@@ -749,8 +751,8 @@ body.in-game {
 
     .card-container.mid {
         max-width: 90%;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(6, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
     }
     .game-info-container.mid {
         width: 90%;
@@ -766,12 +768,12 @@ body.in-game {
     }
 
     .card-container.insane {
-        max-width: 90%;
+        max-width: 80%;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(8, 1fr);
     }
     .game-info-container.insane {
-        width: 90%;
+        width: 80%;
     }
 
     .game-ended-options {
@@ -839,16 +841,31 @@ body.in-game {
 
         width: 3.5rem;
         height: 3.5rem;
-        margin-right: 0.2rem;
-        /* margin-bottom: 0.1rem; */
+        margin-right: 0.1rem;
     }
 
     #mute-btn {
         position: absolute;
         width: 3.5rem;
         height: 3.5rem;
-        margin-left: 0.2rem;
-        /* margin-bottom: 0.1rem; */
+        margin-left: 0.1rem;
+    }
+
+    body.in-game #mute-btn {
+        position: absolute;
+
+        width: 3rem;
+        height: 3rem;
+        left: 1px; 
+        top: 1px;
+    }
+
+    body.in-game .img-button {
+        padding: 0.3rem;
+    }
+
+    body.in-game #credits-btn {
+        display: none;
     }
 
     .credits-container {
@@ -982,6 +999,10 @@ body.in-game {
     .p-link {
         margin-top: 0.20rem;
     }
+    .records-container {
+        width: 95%;
+    }
+    
 
     .hidden {
         display: none;

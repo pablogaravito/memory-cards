@@ -1006,7 +1006,7 @@ class Game {
                 break;
             case 1:
 				this.totalTime = 70;
-                cardNumber = 18;
+                cardNumber = 20;
                 break;
             case 2:
 				this.totalTime = 60;
@@ -1018,7 +1018,7 @@ class Game {
                 break;
             default:
 				this.totalTime = 60;
-                cardNumber = 18;
+                cardNumber = 20;
                 break;
         }
 
@@ -1237,7 +1237,7 @@ function populateBoard(pack, cardSet) {
             gameInfoContainer.classList.remove('mid', 'hard', 'insane');
             gameInfoContainer.classList.add('easy');
             break;
-        case 18:
+        case 20:
             board.classList.remove('easy', 'hard', 'insane');
             board.classList.add('mid');
             gameInfoContainer.classList.remove('easy', 'hard', 'insane');
