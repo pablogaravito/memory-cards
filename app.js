@@ -1150,12 +1150,16 @@ class Game {
                 this.gameOver();
         }, 1000);
     }
+	stopCountDown() {
+		clearInterval(this.countDown);
+		this.timer.innerText = '?';
+	}
     gameOver() {
         clearInterval(this.countDown);
 		if (soundOn) this.audioController.gameOver();
         document.querySelector('#result').innerText = 'Se acabó el tiempo!';
         document.querySelector('#details').innerText = `Lograste ${this.matches} de ${(this.cardsArray.length)/2} aciertos`;
-        document.querySelector('#game-ended-text').classList.remove('hidden');
+        document.querySelector('#game-ended-text').classList.remove('hidden');		
         this.hideCards();
     }
     victory() {
@@ -1532,6 +1536,8 @@ function ready() {
     startGameOverLay.addEventListener('click', () => {
         startGameOverLay.classList.add('hidden');
         gameContainer.classList.remove('hidden');
+		const backBtn = document.querySelector('#back-btn');
+		backBtn.classList.remove('hidden');
         game.startGame();
     });
     restartOverlay.addEventListener('click', () => {
@@ -1543,6 +1549,7 @@ function ready() {
         document.body.classList.remove('in-game');
         gameContainer.classList.add('hidden');
         document.querySelector('.settings').classList.remove('hidden');
+		document.querySelector('#back-btn').classList.add('hidden');
     });
 	const muteBtn = document.querySelector('#mute-btn');
     muteBtn.addEventListener('click', () => {
@@ -1565,6 +1572,14 @@ function ready() {
         const credits = document.querySelector('.credits-container');
         credits.classList.add('hidden');
     });
+	const backBtn = document.querySelector('#back-btn');
+	backBtn.addEventListener('click', () => {
+		game.stopCountDown();
+		backBtn.classList.add('hidden');
+		document.body.classList.remove('in-game');
+        gameContainer.classList.add('hidden');
+        document.querySelector('.settings').classList.remove('hidden');
+	});
 }
 
 if (document.readyState === 'loading') {

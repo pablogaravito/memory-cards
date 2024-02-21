@@ -589,6 +589,16 @@ body.in-game {
     transform: scale(0.95);
 }
 
+/* BACK BUTTON */
+#back-btn {
+    position: absolute;
+    left: 0;
+    top: 5%;
+    width: 4rem;
+    height: 4rem;
+    margin-left: 0.8rem;
+}
+
 /* MUTE BUTTON */
 #mute-btn {
     position: absolute;
@@ -782,13 +792,17 @@ body.in-game {
     }
 
     #result {
-        font-size: 5rem;
+        font-size: 3.8rem;
         margin-bottom: 1rem;
     }
 
     #details {
         width: 90%;
-        font-size: 2.5rem;
+        font-size: 2.3rem;
+    }
+
+    .overlay-text-small {
+        font-size: 2.9rem;
     }
 
     @keyframes overlay-grow {
@@ -841,27 +855,37 @@ body.in-game {
 
         width: 3.5rem;
         height: 3.5rem;
-        margin-right: 0.1rem;
+        margin-right: 0.5rem;
     }
 
     #mute-btn {
         position: absolute;
         width: 3.5rem;
         height: 3.5rem;
-        margin-left: 0.1rem;
+        margin-left: 0.5rem;
     }
 
     body.in-game #mute-btn {
         position: absolute;
-
-        width: 3rem;
-        height: 3rem;
-        left: 1px; 
-        top: 1px;
+        /* width: 3rem;
+        height: 3rem; */
+        right: 1px; 
+        left: auto;
+        top: 90%;
+        margin-right: 0.5rem;
     }
 
-    body.in-game .img-button {
-        padding: 0.3rem;
+    .img-button {
+        padding: 0.6rem;
+    }
+
+    body.in-game #back-btn {
+        position: absolute;
+        /* width: 3rem;
+        height: 3rem; */
+        left: 1px; 
+        top: 90%;
+        margin-left: 0.5rem;
     }
 
     body.in-game #credits-btn {
