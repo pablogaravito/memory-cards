@@ -386,16 +386,21 @@ body.in-game {
     background-color: #fdffcd;
     
     transition: transform ease-in-out 200ms;
-    cursor: not-allowed;
-    opacity: 0.3;
+    cursor: pointer;
 }
-#arrow-img.enabled:hover {
+/* #arrow-img.enabled:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 #arrow-img.enabled {
     opacity:1;
+} */
+#arrow-img:hover {
+    transform: scale(1.1);
 }
+/* #arrow-img.enabled {
+    opacity:1;
+} */
 .pos1 {
     border-radius: 1.5rem 1.5rem 0 0;
     -moz-border-radius: 1.5rem 1.5rem 0 0;

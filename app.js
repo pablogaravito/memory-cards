@@ -1416,31 +1416,36 @@ function compareScores(records, currScore) {
         input.removeAttribute('readonly');
         input.focus();
 
-		input.addEventListener('blur', () => {
-            input.classList.add('noselect');
-            input.setAttribute('readonly', true);
-            const newName = input.value;
-            const arrowBtn = document.querySelector('#arrow-img');
-            arrowBtn.classList.add('enabled');
-            currentPlayer = newName;
-            currentType.records[i].name = currentPlayer;
-            saveScores();
-            readRecords(theme, level);
-			// restoreDefaults();
-        });    
+		// input.addEventListener('blur', () => {
+        //     input.classList.add('noselect');
+        //     input.setAttribute('readonly', true);
+        //     const newName = input.value;
+        //     const arrowBtn = document.querySelector('#arrow-img');
+        //     arrowBtn.classList.add('enabled');
+        //     currentPlayer = newName;
+        //     currentType.records[i].name = currentPlayer;
+        //     saveScores();
+        //     readRecords(theme, level);
+        // });    
+        
+        // input.addEventListener('keyup', e => {
+        //     if (e.key === "Enter") {
+        //         input.classList.add('noselect');
+        //         input.setAttribute('readonly', true);
+        //         const newName = input.value;
+        //         const arrowBtn = document.querySelector('#arrow-img');
+        //         arrowBtn.classList.add('enabled');
+		// 		currentPlayer = newName;
+        //         currentType.records[i].name = currentPlayer;
+        //         saveScores();
+        //         readRecords(theme, level);
+        //     }
+        // });
         
         input.addEventListener('keyup', e => {
             if (e.key === "Enter") {
-                input.classList.add('noselect');
-                input.setAttribute('readonly', true);
-                const newName = input.value;
-                const arrowBtn = document.querySelector('#arrow-img');
-                arrowBtn.classList.add('enabled');
-				currentPlayer = newName;
-                currentType.records[i].name = currentPlayer;
-                saveScores();
-                readRecords(theme, level);
-				// restoreDefaults();
+                finishSavingRecord();
+                // readRecords(theme, level);
             }
         });
     } else {
@@ -1502,6 +1507,20 @@ function readRecords(theme, level) {
     }
 }
 
+function finishSavingRecord() {
+	const cell = document.querySelector(`.pos${currentIndex+1}`);
+    const input = cell.querySelector('.name > input[type=text]');
+	const newName = input.value;
+	currentPlayer = newName;
+    currentType.records[currentIndex].name = currentPlayer;
+    saveScores();
+	document.querySelector('.dividendo').classList.add('hidden'); 
+	document.querySelector('#result').innerText = 'FELICIDADES! NUEVO RECORD!';
+	document.querySelector('#details').innerText = `${currentPlayer}, lo lograste en ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
+	document.querySelector('#game-ended-text').classList.remove('hidden');
+	restoreDefaults();	
+}
+
 function ready() {   
     fillScores();
     fillLevelSelect();
@@ -1516,16 +1535,7 @@ function ready() {
     });
 	const arrowBtn = document.querySelector('#arrow-img');
     arrowBtn.addEventListener('click', () => {
-        if (!(arrowBtn.classList.contains('enabled'))) {
-            return;
-        } else {
-            arrowBtn.classList.remove('enabled');
-			document.querySelector('.dividendo').classList.add('hidden'); 
-			document.querySelector('#result').innerText = 'FELICIDADES! NUEVO RECORD!';
-			document.querySelector('#details').innerText = `${currentPlayer}, lo lograste en ${game.totalTime - game.timeRemaining} segundos y ${game.currentFlips} jugadas!`;
-			document.querySelector('#game-ended-text').classList.remove('hidden');
-			restoreDefaults();
-        }
+        finishSavingRecord();
     });
     game = new Game();   
     const gameContainer = document.querySelector('.game-container');

@@ -1,4 +1,3 @@
-- agregar botón de retroceder para volver al menú sin necesidad de actualizar
 - cambiar la parte del honor board: ya no quitar focus, un enter o flecha para guardar como esté
 - animación y sonido cuando no se puede hacer jugada aún
 - chequear nro de versión?
@@ -9,3 +8,4 @@ done:
 - añadir los nuevos temas
 - añadir un about
 - control para activar y desactivar los sonidos
+- agregar botón de retroceder para volver al menú sin necesidad de actualizar
