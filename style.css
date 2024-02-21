@@ -8,9 +8,6 @@ html {
     font-size: 15px;
 }
 body {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     max-height: 100vh;
     background-image: linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
     -webkit-touch-callout: none; /* iOS Safari */
@@ -388,19 +385,9 @@ body.in-game {
     transition: transform ease-in-out 200ms;
     cursor: pointer;
 }
-/* #arrow-img.enabled:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-}
-#arrow-img.enabled {
-    opacity:1;
-} */
 #arrow-img:hover {
     transform: scale(1.1);
 }
-/* #arrow-img.enabled {
-    opacity:1;
-} */
 .pos1 {
     border-radius: 1.5rem 1.5rem 0 0;
     -moz-border-radius: 1.5rem 1.5rem 0 0;
@@ -436,7 +423,6 @@ body.in-game {
     text-align: center;
     color: #a75265;
 }
-
 
 /* CREDITS SECTION */
 .credits-container {
@@ -571,7 +557,7 @@ body.in-game {
     margin-top: 0.20rem;
 }
 
-/* MUTE AND CREDITS BUTTONS */
+/* MUTE, CREDITS and BACK BUTTONS */
 .img-button {
     cursor: pointer;
     border-radius: 50%;
@@ -686,32 +672,6 @@ body.in-game {
       transform: rotate(360deg);
     }
   }
-  /* @media (max-width: 900px) {
-    .card-container {
-        grid-template-columns: repeat(4, auto);
-    }
-    
-    .game-info-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .game-info {
-        font-size: 1.5rem;
-    }
-}
-  @media (max-width: 600px) {
-    .card-container {
-        grid-template-columns: repeat(2, auto);
-    }
-    
-    .game-info-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .game-info {
-        font-size: 1rem;
-    }
-} */
 
 /* RESPONSIVE DESIGN MEDIA QUERIES */
 @media screen and (max-width: 992px) {
@@ -750,7 +710,6 @@ body.in-game {
     }
     .game-info-container {
         width: 90%;
-        padding-left: 2rem;
     }
     .game-info {
         font-size: 2rem;
@@ -872,12 +831,10 @@ body.in-game {
 
     body.in-game #mute-btn {
         position: absolute;
-        /* width: 3rem;
-        height: 3rem; */
         right: 1px; 
         left: auto;
         top: 90%;
-        margin-right: 0.5rem;
+        margin-right: 0.25rem;
     }
 
     .img-button {
@@ -886,11 +843,9 @@ body.in-game {
 
     body.in-game #back-btn {
         position: absolute;
-        /* width: 3rem;
-        height: 3rem; */
         left: 1px; 
         top: 90%;
-        margin-left: 0.5rem;
+        margin-left: 0.25rem;
     }
 
     body.in-game #credits-btn {
