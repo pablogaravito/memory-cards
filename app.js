@@ -954,16 +954,12 @@ var soundOn = JSON.parse(localStorage.getItem('soundOn')) || true;
 class AudioController {
     constructor() {
         // this.bgMusic = new Audio('res/audio/creepy.mp3');
-        // this.flipSound = new Audio('https://github.com/pablogaravito/memory-cards/raw/master/res/audio/flip.wav');
-        // this.matchSound = new Audio('https://github.com/pablogaravito/memory-cards/raw/master/res/audio/match.wav');
-        // this.victorySound = new Audio('https://github.com/pablogaravito/memory-cards/raw/master/res/audio/victory.wav');
-        // this.gameOverSound = new Audio('https://github.com/pablogaravito/memory-cards/raw/master/res/audio/gameOver.wav');
+        // this.bgMusic.volume = 0.3;
+        // this.bgMusic.loop = true;
         this.flipSound = new Audio('./res/audio/flip.wav');
         this.matchSound = new Audio('./res/audio/match.wav');
         this.victorySound = new Audio('./res/audio/victory.wav');
         this.gameOverSound = new Audio('./res/audio/game-over.wav');
-        // this.bgMusic.volume = 0.3;
-        // this.bgMusic.loop = true;
     }
     // startMusic() {
     //     this.bgMusic.play();
@@ -990,8 +986,6 @@ class AudioController {
 
 class Game {
     constructor() {     
-		// this.totalTime = 60;
-		// this.timeRemaining = this.totalTime;
         this.timer = document.querySelector('#time-remaining');
         this.flips = document.querySelector('#flips');
         this.audioController = new AudioController();
@@ -1415,37 +1409,10 @@ function compareScores(records, currScore) {
         input.classList.remove('noselect');
         input.removeAttribute('readonly');
         input.focus();
-
-		// input.addEventListener('blur', () => {
-        //     input.classList.add('noselect');
-        //     input.setAttribute('readonly', true);
-        //     const newName = input.value;
-        //     const arrowBtn = document.querySelector('#arrow-img');
-        //     arrowBtn.classList.add('enabled');
-        //     currentPlayer = newName;
-        //     currentType.records[i].name = currentPlayer;
-        //     saveScores();
-        //     readRecords(theme, level);
-        // });    
-        
-        // input.addEventListener('keyup', e => {
-        //     if (e.key === "Enter") {
-        //         input.classList.add('noselect');
-        //         input.setAttribute('readonly', true);
-        //         const newName = input.value;
-        //         const arrowBtn = document.querySelector('#arrow-img');
-        //         arrowBtn.classList.add('enabled');
-		// 		currentPlayer = newName;
-        //         currentType.records[i].name = currentPlayer;
-        //         saveScores();
-        //         readRecords(theme, level);
-        //     }
-        // });
         
         input.addEventListener('keyup', e => {
             if (e.key === "Enter") {
                 finishSavingRecord();
-                // readRecords(theme, level);
             }
         });
     } else {

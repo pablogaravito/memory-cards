@@ -742,7 +742,7 @@ body.in-game {
     }
 
     .card-container.insane {
-        max-width: 80%;
+        max-width: 75%;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(8, 1fr);
     }
@@ -776,7 +776,7 @@ body.in-game {
         }
         to {
             background-color: rgba(0, 0, 0, .8);
-            font-size: 4.4em;
+            font-size: 5rem;
         }
     }
 
@@ -834,7 +834,7 @@ body.in-game {
         right: 1px; 
         left: auto;
         top: 90%;
-        margin-right: 0.25rem;
+        margin-right: 0.1rem;
     }
 
     .img-button {
@@ -845,7 +845,7 @@ body.in-game {
         position: absolute;
         left: 1px; 
         top: 90%;
-        margin-left: 0.25rem;
+        margin-left: 0.1rem;
     }
 
     body.in-game #credits-btn {
